@@ -7,8 +7,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public Gadgets[] Gadgets;
 
-
-
+    public int PointsCurrentLevel;
     public int Points;
     public int PointsOnClick
     {
@@ -21,8 +20,8 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
     
-    [Range(1,16)] public int Level;
-    public int MaxPoints; //=> (int)Math.Pow(2.0, Level);
+    public int Level;
+    public int MaxPoints => Level*5;
 
     void Start()
     {
@@ -39,11 +38,14 @@ public class GameManager : MonoSingleton<GameManager>
 
     }
 
-    public void Click()
+    public void AddPointOnClick()
     {
-        Points += PointsOnClick;
-        if (Points >= MaxPoints)
+        PointsCurrentLevel += PointsOnClick;
+        if (PointsCurrentLevel > MaxPoints)
+        {
             Level++;
-        Debug.Log(MaxPoints);
+            PointsCurrentLevel = 0;
+        }
+        Points += PointsOnClick;
     }
 }
