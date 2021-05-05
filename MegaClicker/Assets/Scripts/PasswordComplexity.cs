@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class PasswordComplexity : MonoSingleton<PasswordComplexity>
+class PasswordComplexity
 {
     public enum Complexity
     {
@@ -10,7 +10,7 @@ public class PasswordComplexity : MonoSingleton<PasswordComplexity>
         reliable
     }
 
-    public Complexity GetComplexity(string password)
+    public static Complexity GetComplexity(string password)
 	{
 		var complexity = 0;
 
@@ -20,6 +20,7 @@ public class PasswordComplexity : MonoSingleton<PasswordComplexity>
         if (ContainsUpperLetter(password)) complexity++;
         if (ContainsSpecialCharacters(password)) complexity++;
 
+        return (Complexity)complexity;
     }
 
     private static bool ContainsLowerLetter(string password)
@@ -29,6 +30,7 @@ public class PasswordComplexity : MonoSingleton<PasswordComplexity>
             if ((Char.IsLetter(symbol)) && (Char.IsLower(symbol)))
                 return true;
         }
+
         return false;
     }
 
@@ -39,6 +41,7 @@ public class PasswordComplexity : MonoSingleton<PasswordComplexity>
             if ((Char.IsLetter(symbol)) && (Char.IsUpper(symbol)))
                 return true;
         }
+
         return false;
     }
 
@@ -49,20 +52,24 @@ public class PasswordComplexity : MonoSingleton<PasswordComplexity>
             if (Char.IsDigit(symbol))
                 return true;
         }
+
         return false;
     }
 
-    private static bool ContainsSpecialCharacters(string pass)
+    private static bool ContainsSpecialCharacters(string password)
     {
-        var specialCharacters = new char[] 
-        { '!', '@', '#', '$', '%', '^', '&', '*', 
-          '(', ')', '-', '_', '+', '=', ';', ':', 
-          ',', '.', '/', '?', '\', '|', '`', '~', 
-          '[', ']', '{', '}', '.' 
+        var specialCharacters = new string[] 
+        { "!", "@", "#", "$", "%", "^", "&", "*", 
+          "(", ")", "-", "_", "+", "=", ";", ":", 
+          ",", ".", "/", "?", "\\", "|", "`", "~", 
+          "[", "]", "{", "}", "." 
         };
 
-        if (pass.Contains(specialCharacters))
-            return true;
+        foreach (var characters in specialCharacters)
+        {
+            if (password.Contains(characters))
+                return true;
+        }
 
         return false;
     }
