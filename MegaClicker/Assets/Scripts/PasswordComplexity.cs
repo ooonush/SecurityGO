@@ -1,6 +1,6 @@
 ﻿using System;
 
-class PasswordComplexity
+public class PasswordComplexity : MonoSingleton<PasswordComplexity>
 {
     public enum Complexity
     {
@@ -10,7 +10,7 @@ class PasswordComplexity
         reliable
     }
 
-    public static Complexity GetComplexity(string password)
+    public Complexity GetComplexity(string password)
 	{
 		var complexity = 0;
 
@@ -20,7 +20,6 @@ class PasswordComplexity
         if (ContainsUpperLetter(password)) complexity++;
         if (ContainsSpecialCharacters(password)) complexity++;
 
-        return (Complexity)complexity;
     }
 
     private static bool ContainsLowerLetter(string password)
@@ -30,7 +29,6 @@ class PasswordComplexity
             if ((Char.IsLetter(symbol)) && (Char.IsLower(symbol)))
                 return true;
         }
-
         return false;
     }
 
@@ -41,7 +39,6 @@ class PasswordComplexity
             if ((Char.IsLetter(symbol)) && (Char.IsUpper(symbol)))
                 return true;
         }
-
         return false;
     }
 
@@ -52,24 +49,20 @@ class PasswordComplexity
             if (Char.IsDigit(symbol))
                 return true;
         }
-
         return false;
     }
 
-    private static bool ContainsSpecialCharacters(string password)
+    private static bool ContainsSpecialCharacters(string pass)
     {
-        var specialCharacters = new string[] 
-        { "!", "@", "#", "$", "%", "^", "&", "*", 
-          "(", ")", "-", "_", "+", "=", ";", ":", 
-          ",", ".", "/", "?", "\\", "|", "`", "~", 
-          "[", "]", "{", "}", "." 
+        var specialCharacters = new char[] 
+        { '!', '@', '#', '$', '%', '^', '&', '*', 
+          '(', ')', '-', '_', '+', '=', ';', ':', 
+          ',', '.', '/', '?', '\', '|', '`', '~', 
+          '[', ']', '{', '}', '.' 
         };
 
-        foreach (var characters in specialCharacters)
-        {
-            if (password.Contains(characters))
-                return true;
-        }
+        if (pass.Contains(specialCharacters))
+            return true;
 
         return false;
     }
