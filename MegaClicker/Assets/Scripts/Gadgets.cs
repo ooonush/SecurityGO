@@ -6,7 +6,8 @@ public class Gadgets : MonoSingleton<Gadgets>
 {
     public int PointsOnClick { get; protected set; }
 
-
+    private LinkedList<string> passwordHistory;  
+    private PasswordComplexity.Complexity passwordComplexity = PasswordComplexity.GetComplexity("124124");
 
     [Range(0,100)] private int SecurityLevel;
     private int PassivPoints;
@@ -21,7 +22,6 @@ public class Gadgets : MonoSingleton<Gadgets>
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
