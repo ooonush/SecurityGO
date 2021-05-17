@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class VirusEvent : MonoSingleton<VirusEvent>
 {
@@ -13,25 +14,26 @@ public class VirusEvent : MonoSingleton<VirusEvent>
     public GameObject Virus;
 
     public bool IsActive = false;
+    public UnityAction OnEndVirusEvent;
 
     private void Start()
     {
         gameManager.Virus.SetActive(false);
+        OnEndVirusEvent += StopVirusEvent;
     }
 
     void ClickDevice()
     {
         if (ClickCountToStop <= 0)
-            EndVirusEvent();
+            OnEndVirusEvent();
         Debug.Log("Click");
         ClickCountToStop--;
-        
     }
 
-    public void EndVirusEvent()
+    public void StopVirusEvent()
     {
+        Debug.Log("End");
         IsActive = false;
-        eventsManager.EventIsPlaying = false;
         gameManager.Virus.SetActive(false);
     }
 
