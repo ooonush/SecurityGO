@@ -11,7 +11,8 @@ public class GameEventsManager : MonoSingleton<GameEventsManager>
     float EventTimerInSec => 3; // - 0.25f*gameManager.Level*gameManager.Level;
 
     UnityAction EventStartTrigger;
-    public bool EventIsPlaying = false;
+    public int EventsIsPlayingCount;
+    public bool CanIsPlaying => EventsIsPlayingCount <= 3;
 
     void Start()
     {
@@ -22,14 +23,13 @@ public class GameEventsManager : MonoSingleton<GameEventsManager>
     void StartEvent()
     {
         MonoSingleton<VirusEvent>.Instance.StartVirusEvent();
-        EventIsPlaying = true;
     }
 
     public IEnumerator EventTriggerCoroutine()
     {
         while (true)
         {
-            if (!EventIsPlaying)
+            if (!CanIsPlaying)
             {
                 yield return new WaitForSeconds(EventTimerInSec);
                 EventStartTrigger();

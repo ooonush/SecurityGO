@@ -1526,6 +1526,10 @@ PrefabInstance:
       propertyPath: Device
       value: 
       objectReference: {fileID: 1311247416}
+    - target: {fileID: 5959677847741849331, guid: 33bf34a25984575439f639e30124c8ef, type: 3}
+      propertyPath: DeviceIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5959677847914802335, guid: 33bf34a25984575439f639e30124c8ef, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.72003174
@@ -1955,6 +1959,10 @@ PrefabInstance:
       propertyPath: Device
       value: 
       objectReference: {fileID: 1311247416}
+    - target: {fileID: 5959677847741849331, guid: 33bf34a25984575439f639e30124c8ef, type: 3}
+      propertyPath: DeviceIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5959677847914802335, guid: 33bf34a25984575439f639e30124c8ef, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.72003174
