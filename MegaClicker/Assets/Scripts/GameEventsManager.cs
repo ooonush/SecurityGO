@@ -4,33 +4,37 @@ using System.Timers;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventsManager : MonoSingleton<EventsManager>
+public class GameEventsManager : MonoSingleton<GameEventsManager>
 {
     GameManager gameManager => MonoSingleton<GameManager>.Instance;
     //таймер тем меньше чем больше уровень игрока
-    float EventTimer => 3; // - 0.25f*gameManager.Level*gameManager.Level;
+    float EventTimerInSec => 3; // - 0.25f*gameManager.Level*gameManager.Level;
 
     UnityAction EventStartTrigger;
     public bool EventIsPlaying = false;
 
     void Start()
     {
-        StartCoroutine(EventTimerCoroutine());
+        StartCoroutine(EventTriggerCoroutine());
         EventStartTrigger += StartEvent;
     }
 
     void StartEvent()
     {
+        MonoSingleton<VirusEvent>.Instance.StartVirusEvent();
         EventIsPlaying = true;
     }
 
-    public IEnumerator EventTimerCoroutine()
+    public IEnumerator EventTriggerCoroutine()
     {
         while (true)
         {
-            yield return new WaitForSeconds(EventTimer);
             if (!EventIsPlaying)
+            {
+                yield return new WaitForSeconds(EventTimerInSec);
                 EventStartTrigger();
+            }
+            else yield return new WaitForSeconds(5);
         }
     }
 }
