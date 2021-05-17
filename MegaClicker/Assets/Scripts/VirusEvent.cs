@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class VirusEvent : MonoSingleton<VirusEvent>
 {
-    GameEventsManager eventsManager => MonoSingleton<GameEventsManager>.Instance;
     GameManager gameManager => MonoSingleton<GameManager>.Instance;
     Device[] devices => MonoSingleton<GameManager>.Instance.Devices;
 

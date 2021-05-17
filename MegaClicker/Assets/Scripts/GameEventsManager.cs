@@ -28,13 +28,11 @@ public class GameEventsManager : MonoSingleton<GameEventsManager>
     public IEnumerator EventTriggerCoroutine()
     {
         while (true)
-        {
-            if (!CanIsPlaying)
+            if (CanIsPlaying)
             {
                 yield return new WaitForSeconds(EventTimerInSec);
                 EventStartTrigger();
             }
             else yield return new WaitForSeconds(5);
-        }
     }
 }

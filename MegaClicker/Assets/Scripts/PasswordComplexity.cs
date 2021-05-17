@@ -1,6 +1,6 @@
 ﻿using System;
 
-class PasswordComplexity
+public static class PasswordComplexity
 {
     public enum Complexity
     {
