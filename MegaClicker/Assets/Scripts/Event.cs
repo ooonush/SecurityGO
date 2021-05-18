@@ -8,13 +8,13 @@ public class Event : MonoSingleton<Event>
     public bool IsActive => ActiveDevice == null;
     public Device ActiveDevice { get; private set; }
 
-    public void End(bool isWin)
+    public void EndEvent(bool isWin)
     {
         ActiveDevice = null;
         EndEventAction(isWin);
     }
 
-    public void Start(Device device)
+    public void StartEvent(Device device)
     {
         StartEventAction();
         ActiveDevice = device;
@@ -24,5 +24,5 @@ public class Event : MonoSingleton<Event>
 interface IEvent
 {
     public void EndEvent(bool isWin);
-    public void StartEvent();
+    public void StartExampleEvent();
 }

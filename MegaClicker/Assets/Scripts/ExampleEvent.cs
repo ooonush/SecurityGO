@@ -5,22 +5,22 @@ public class EventExample : Event, IEvent //Как надо писать новое событие. насле
 {
     private void Start()
     {
-        StartEventAction += StartEvent; //подписка на то что событие началось
+        StartEventAction += StartExampleEvent; //подписка на то что событие началось
 
         //Если нужно проверить работоспособность кода вызываете это
         StartEventAction(); //Она срабатывает в 8 строчке
     }
 
-    public void StartEvent()
+    public void StartExampleEvent()
     {
         //Здесь начинаете писать код для ивента
     }
 
-    public void EndEvent(bool isWin) //isWin - выиграл игрок или проиграл
+    public void EndExampleEvent(bool isWin) //isWin - выиграл игрок или проиграл
     {
         //Пишите что должно произойти в конце (скрыть менюшку...)
 
         //И в конце вызываете это
-        End(isWin);
+        base.EndEvent(isWin);
     }
 }
