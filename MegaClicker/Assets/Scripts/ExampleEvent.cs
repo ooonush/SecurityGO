@@ -1,3 +1,5 @@
+
+
 // Изучите класс Event... Плиз не надо ничо трогать :D
 public class EventExample : Event, IEvent //Как надо писать новое событие. наследуете интерфейс и реализуете его
 {
@@ -5,9 +7,8 @@ public class EventExample : Event, IEvent //Как надо писать новое событие. насле
     {
         StartEventAction += StartEvent; //подписка на то что событие началось
 
-
         //Если нужно проверить работоспособность кода вызываете это
-        StartEventAction(); //Она срабатывает в 11 строчке...
+        StartEventAction(); //Она срабатывает в 8 строчке
     }
 
     public void StartEvent()
