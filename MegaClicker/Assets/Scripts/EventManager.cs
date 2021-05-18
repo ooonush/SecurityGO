@@ -9,7 +9,7 @@ public class EventManager : MonoSingleton<EventManager>
     Device[] devices => MonoSingleton<GameManager>.Instance.Devices;
 
     //таймер тем меньше чем больше уровень игрока
-    UnityAction EventStartTrigger;
+    UnityAction StartEventTrigger;
     bool IsEventPlaying;
     float EventTimerInSec => 3; // - 0.25f*gameManager.Level*gameManager.Level;
 
@@ -19,7 +19,7 @@ public class EventManager : MonoSingleton<EventManager>
     void Start()
     {
         StartCoroutine(EventTriggerCoroutine());
-        EventStartTrigger += StartEvent;
+        StartEventTrigger += StartEvent;
         ClickOnActiveDeviceTrigger += ClickOnActiveDevice;
     }
 
@@ -47,7 +47,7 @@ public class EventManager : MonoSingleton<EventManager>
             if (!IsEventPlaying)
             {
                 yield return new WaitForSeconds(EventTimerInSec);
-                EventStartTrigger();
+                StartEventTrigger();
             }
             else yield return new WaitForSeconds(5);
     }
