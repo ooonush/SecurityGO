@@ -16,9 +16,10 @@ public class Device : MonoBehaviour
     public string Password;
 
     public Button DeviceButton;
-    
+
     void Start()
     {
         DeviceButton = gameObject.GetComponent<Button>();
     }
+
 }
