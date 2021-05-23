@@ -1,6 +1,6 @@
 using UnityEngine.Events;
 
-public class Event : MonoSingleton<Event>
+public class Event : MonoSingleton<Event>, IEvent
 {
     public UnityAction StartEventAction;
     public UnityAction<bool> EndEventAction;
@@ -24,5 +24,5 @@ public class Event : MonoSingleton<Event>
 interface IEvent
 {
     public void EndEvent(bool isWin);
-    public void StartExampleEvent();
+    public void StartEvent(Device device);
 }

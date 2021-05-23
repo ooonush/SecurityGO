@@ -1,7 +1,7 @@
 
 
 // Изучите класс Event... Плиз не надо ничо трогать :D
-public class EventExample : Event, IEvent //Как надо писать новое событие. наследуете интерфейс и реализуете его
+public class EventExample : Event //Как надо писать новое событие. наследуете интерфейс и реализуете его
 {
     private void Start()
     {
