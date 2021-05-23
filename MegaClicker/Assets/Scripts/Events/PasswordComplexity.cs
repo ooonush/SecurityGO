@@ -4,9 +4,11 @@ public static class PasswordComplexity
 {
     public enum Complexity
     {
+        noPassword,
         light,
         weak,
         medium,
+        good,
         reliable
     }
 
