@@ -20,9 +20,3 @@ public class Event : MonoSingleton<Event>
         ActiveDevice = device;
     }
 }
-
-interface IEvent
-{
-    public void EndEvent(bool isWin);
-    public void StartExampleEvent();
-}
