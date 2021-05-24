@@ -14,9 +14,7 @@ public class Event : MonoSingleton<Event>
     {
         ActiveDevice = null;
         if (EndEventAction != null)
-        {
             EndEventAction(isWin);
-        }
     }
 
     public void StartEvent(Device device)

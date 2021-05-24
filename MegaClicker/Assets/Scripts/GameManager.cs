@@ -9,7 +9,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public Device[] Devices;
     public Text PointsText;
-    public GameObject Virus;
+    //public GameObject Virus;
 
     public int PointsCurrentLevel;
     public int Points;
@@ -29,9 +29,10 @@ public class GameManager : MonoSingleton<GameManager>
         get
         {
             var sum = 0;
-            foreach (var device in Devices)
-                if (device.IsBought)
-                    sum += device.PointsPerSecond;
+            if (Devices != null)
+                foreach (var device in Devices)
+                    if (device != null && device.IsBought)
+                        sum += device.PointsPerSecond;
             return sum;
         }
     }
@@ -62,7 +63,8 @@ public class GameManager : MonoSingleton<GameManager>
             PointsCurrentLevel = 0;
         }
         Points += points;
-        PointsText.text = Points.ToString();
+        if (PointsText != null)
+            PointsText.text = Points.ToString();
     }
 
     public void AddPointOnClick()

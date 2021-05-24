@@ -12,10 +12,8 @@ public class Device : MonoBehaviour
     public int SecurityLevel;
     public int PointsPerSecond;
     public int PasswordSecurityLevel;
-
-    public string Password;
-
     public Button DeviceButton;
+    public string Password;
 
     void Start()
     {

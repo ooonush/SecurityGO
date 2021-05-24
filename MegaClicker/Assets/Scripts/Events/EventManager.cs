@@ -8,16 +8,23 @@ public class EventManager : MonoSingleton<EventManager>
 {
     Device[] devices => MonoSingleton<GameManager>.Instance.Devices;
 
+    public Event currentEvent;
+    public Event[] Events;
+
     //таймер тем меньше чем больше уровень игрока
     UnityAction StartEventTrigger;
     bool IsEventPlaying;
-    float EventTimerInSec => 3; // - 0.25f*gameManager.Level*gameManager.Level;
+    float EventTimerInSec => 3; // - 0.25fgameManager.LevelgameManager.Level;
 
     public Device ActiveDevice;
     public UnityAction ClickOnActiveDeviceTrigger;
 
     void Start()
     {
+        Events = new Event[] {
+            MonoSingleton<PhotoEvent>.Instance,
+            MonoSingleton<EventPasswordComplexity>.Instance
+        };
         StartCoroutine(EventTriggerCoroutine());
         StartEventTrigger += StartEvent;
         ClickOnActiveDeviceTrigger += ClickOnActiveDevice;
@@ -52,11 +59,17 @@ public class EventManager : MonoSingleton<EventManager>
             else yield return new WaitForSeconds(5);
     }
 
+    Event GetRandomEvent()
+    {
+        var random = new System.Random();
+        return Events[random.Next(0, Events.Length)];
+    }
+
     Device GetRandomBoughtDevice()
     {
         List<Device> boughtDevices = new List<Device>();
         foreach (var device in devices)
-            if(device.IsBought)
+            if (device.IsBought)
                 boughtDevices.Add(device);
 
         int randomIndex = (int)Mathf.Round(Random.value * (boughtDevices.Count - 1));

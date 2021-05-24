@@ -17,7 +17,10 @@ public class PointsBar : MonoBehaviour
 
     void Update()
     {
-        bar.fillAmount = (float)GameManager.PointsCurrentLevel / GameManager.MaxPoints;
-        text.text = GameManager.PointsCurrentLevel.ToString();
+        if (GameManager != null)
+        {
+            bar.fillAmount = (float)GameManager.PointsCurrentLevel / GameManager.MaxPoints;
+            text.text = GameManager.PointsCurrentLevel.ToString();
+        }
     }
 }

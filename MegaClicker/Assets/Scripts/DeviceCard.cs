@@ -16,9 +16,12 @@ public class DeviceCard : MonoBehaviour
 
     public void SetCharacteristicTexts()
     {
-        characteristics[0].GetComponent<Text>().text = Device.PointsPerSecond.ToString();
-        characteristics[1].GetComponent<Text>().text = Device.SecurityLevel.ToString();
-        characteristics[2].GetComponent<Text>().text = Device.PasswordSecurityLevel.ToString();
-        characteristics[3].GetComponent<Text>().text = Device.PointsOnClick.ToString();
+        if (MonoSingleton<GameManager>.Instance != null)
+        {
+            characteristics[0].GetComponent<Text>().text = Device.PointsPerSecond.ToString();
+            characteristics[1].GetComponent<Text>().text = Device.SecurityLevel.ToString();
+            characteristics[2].GetComponent<Text>().text = Device.PasswordSecurityLevel.ToString();
+            characteristics[3].GetComponent<Text>().text = Device.PointsOnClick.ToString();
+        }
     }
 }
