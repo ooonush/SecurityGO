@@ -39,6 +39,6 @@ public class PhotoEvent : Event
     {
         yield return new WaitForSeconds(sec);
         CurrentPhoto.gameObject.SetActive(false);
-        //this.EndEvent(true);
+        this.EndEvent(true);
     }
 }

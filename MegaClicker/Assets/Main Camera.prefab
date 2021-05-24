@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 2316746405780892047}
   - component: {fileID: 2316746405780892016}
   - component: {fileID: 2316746405780892018}
-  - component: {fileID: 2316746405780892017}
-  - component: {fileID: 2316746405780892046}
-  - component: {fileID: 4431553044442393319}
+  - component: {fileID: 4885341358577628875}
+  - component: {fileID: 8071596985171690563}
+  - component: {fileID: 4812833573991506221}
+  - component: {fileID: 6201463348793952850}
+  - component: {fileID: 1519361281530250183}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -86,7 +88,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2316746405780892019}
   m_Enabled: 1
---- !u!114 &2316746405780892017
+--- !u!114 &4885341358577628875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,15 +97,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 2316746405780892019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ee7e8800df38643a59f78d88d99b31, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ad746684c41b8046bc3c3cbabea70a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  Gadgets: []
-  PointsCurrentLevel: 0
-  Points: 0
-  Level: 0
---- !u!114 &2316746405780892046
+  currentEvent: {fileID: 0}
+  Events: []
+  ActiveDevice: {fileID: 0}
+--- !u!114 &8071596985171690563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316746405780892019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc8987861a4adc4f93e839f0c770195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  global: 1
+  Panel: {fileID: 0}
+  Text: {fileID: 0}
+--- !u!114 &4812833573991506221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316746405780892019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a041e3c6df823c04b8ae480fb9589d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  global: 1
+  Photos: []
+--- !u!114 &6201463348793952850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,11 +146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  Menus:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &4431553044442393319
+  Menus: []
+--- !u!114 &1519361281530250183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,7 +156,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2316746405780892019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61fafdc5e6d27d844aa02c096897b482, type: 3}
+  m_Script: {fileID: 11500000, guid: 56ee7e8800df38643a59f78d88d99b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
+  Devices: []
+  PointsText: {fileID: 0}
+  PointsCurrentLevel: 0
+  Points: 0
+  Level: 0

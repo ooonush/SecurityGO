@@ -9,21 +9,7 @@ public class Photo : MonoBehaviour
 {
     public GameObject[] Elements;
 
-    public bool IsCheck
-    {
-        get
-        {
-            bool isCheck = true;
-            if (Elements != null)
-            {
-                foreach (var e in Elements)
-                    if (e.gameObject.activeInHierarchy)
-                        isCheck = false;
-            }
-            else isCheck = false;
-            return isCheck;
-        }
-    }
+    public bool IsCheck;
 
     private void Start()
     {
@@ -34,5 +20,17 @@ public class Photo : MonoBehaviour
     {
         foreach (var e in Elements)
             e.SetActive(true);
+    }
+
+    private void Update()
+    {
+        IsCheck = true;
+        if (Elements != null)
+        {
+            foreach (var e in Elements)
+                if (e.activeInHierarchy)
+                    IsCheck = false;
+        }
+        else IsCheck = false;
     }
 }

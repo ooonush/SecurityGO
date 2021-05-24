@@ -8,7 +8,7 @@ public class EventManager : MonoSingleton<EventManager>
 {
     Device[] devices => MonoSingleton<GameManager>.Instance.Devices;
 
-    public Event currentEvent;
+    public Event CurrentEvent;
     public Event[] Events;
 
     //таймер тем меньше чем больше уровень игрока
@@ -32,9 +32,11 @@ public class EventManager : MonoSingleton<EventManager>
 
     void StartEvent()
     {
+        Debug.Log("клик по нужному устройству");
         IsEventPlaying = true;
         ActiveDevice = GetRandomBoughtDevice();
         ActiveDevice.DeviceButton.onClick.AddListener(ClickOnActiveDeviceTrigger);
+        CurrentEvent = GetRandomEvent();
     }
 
     public void EndEvent(bool IsWin)
@@ -45,6 +47,7 @@ public class EventManager : MonoSingleton<EventManager>
 
     void ClickOnActiveDevice()
     {
+        CurrentEvent.StartEventAction();
         //Debug.Log("клик по нужному устройству");
     }
 
