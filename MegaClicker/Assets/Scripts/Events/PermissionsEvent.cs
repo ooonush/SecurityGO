@@ -12,7 +12,6 @@ public class PermissionsEvent : Event
     private List<Application> applications = new List<Application>();
     private Application currentApp;
     private int userPermissionCombination;
-    private bool eventEnded;
 
     void Start()
     {
@@ -33,7 +32,6 @@ public class PermissionsEvent : Event
     private void StartPermissionsEvent()
     {
         userPermissionCombination = 0;
-        eventEnded = false;
         currentApp = applications[UnityEngine.Random.Range(0, applications.Count)];
         eventName.text = currentApp.appName;
 

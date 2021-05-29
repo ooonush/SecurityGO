@@ -2,19 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhotoEvent : Event
+public enum PostAccess
 {
-    Photo CurrentPhoto;
-    public Photo[] Photos;
+    All,
+    Friends,
+    Me
+}
+
+public class PostPhotoEvent : Event
+{
+    public PostPhoto CurrentPhoto;
+    public PostPhoto[] Photos;
     bool isEnding = false;
+    public PostPhotoButton[] AccessButtons;
 
     void Start()
     {
-        Photos = FindObjectsOfType<Photo>();
+        Photos = FindObjectsOfType<PostPhoto>();
         foreach (var p in Photos)
             p.gameObject.SetActive(false);
 
-        StartEventAction += StartPhotoEvent;
+        AccessButtons = FindObjectsOfType<PostPhotoButton>();
+        foreach (var a in AccessButtons)
+            a.gameObject.SetActive(false);
+
+        StartEventAction += StartPostPhotoEvent;
     }
 
     void Update()
@@ -26,16 +38,22 @@ public class PhotoEvent : Event
         }
     }
 
-    void StartPhotoEvent()
+    void StartPostPhotoEvent()
     {
         var random = new System.Random();
         CurrentPhoto = Photos[random.Next(0, Photos.Length)];
 
         CurrentPhoto.gameObject.SetActive(true);
+
+        foreach (var b in AccessButtons)
+            b.gameObject.SetActive(true);
     }
 
     public void ResetEvent()
     {
+        foreach (var a in AccessButtons)
+            a.gameObject.SetActive(false);
+
         isEnding = false;
         CurrentPhoto.ResetPhoto();
         CurrentPhoto.gameObject.SetActive(false);

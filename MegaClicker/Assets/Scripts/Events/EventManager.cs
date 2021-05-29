@@ -8,7 +8,7 @@ public class EventManager : MonoSingleton<EventManager>
 {
     Device[] devices => MonoSingleton<GameManager>.Instance.Devices;
 
-    public Event CurrentEvent;
+    public Event CurrentEvent = null;
     public Event[] Events;
 
     //таймер тем меньше чем больше уровень игрока
@@ -16,15 +16,17 @@ public class EventManager : MonoSingleton<EventManager>
     bool IsEventPlaying;
     float EventTimerInSec => 3; // - 0.25fgameManager.LevelgameManager.Level;
 
-    public Device ActiveDevice;
+    public Device ActiveDevice = null;
     public UnityAction ClickOnActiveDeviceTrigger;
 
     void Start()
     {
         Events = new Event[] {
-            MonoSingleton<PhotoEvent>.Instance,
-            MonoSingleton<EventPasswordComplexity>.Instance
+            //MonoSingleton<PhotoEvent>.Instance,
+            //MonoSingleton<EventPasswordComplexity>.Instance,
+            MonoSingleton<PostPhotoEvent>.Instance
         };
+
         StartCoroutine(EventTriggerCoroutine());
         StartEventTrigger += StartEvent;
         ClickOnActiveDeviceTrigger += ClickOnActiveDevice;
@@ -43,6 +45,10 @@ public class EventManager : MonoSingleton<EventManager>
     {
         ActiveDevice.DeviceButton.onClick.RemoveListener(ClickOnActiveDeviceTrigger);
         IsEventPlaying = false;
+        ActiveDevice = null;
+        CurrentEvent = null;
+
+        Debug.Log("End");
     }
 
     void ClickOnActiveDevice()

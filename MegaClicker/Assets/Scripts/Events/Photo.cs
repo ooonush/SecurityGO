@@ -16,7 +16,7 @@ public class Photo : MonoBehaviour
         Elements = GetComponentsInChildren<Button>().Select(button => button.gameObject).ToArray();
     }
 
-    public void Reset()
+    public void ResetPhoto()
     {
         foreach (var e in Elements)
             e.SetActive(true);
