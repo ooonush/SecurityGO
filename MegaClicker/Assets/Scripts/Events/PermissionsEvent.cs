@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class PermissionsEvent : Event
 {
-    [SerializeField] Text eventName;
+    [SerializeField] Text EventName;
     [SerializeField] List<Button> PermissionButtons;
+    [SerializeField] GameObject EventPanel;
 
     private List<Application> applications = new List<Application>();
     private Application currentApp;
@@ -15,6 +16,8 @@ public class PermissionsEvent : Event
 
     void Start()
     {
+        EventPanel.SetActive(false);
+
         Application Camera = new Application("Камера",
         (int)(Permissions.Camera | Permissions.Microphone | Permissions.Memory | Permissions.Flashlight));
 
@@ -31,9 +34,11 @@ public class PermissionsEvent : Event
 
     private void StartPermissionsEvent()
     {
+        EventPanel.SetActive(true);
+
         userPermissionCombination = 0;
         currentApp = applications[UnityEngine.Random.Range(0, applications.Count)];
-        eventName.text = currentApp.appName;
+        EventName.text = currentApp.appName;
 
         foreach(var btn in PermissionButtons)
         {
@@ -44,6 +49,8 @@ public class PermissionsEvent : Event
 
     public void EndExampleEvent(bool isWin) 
     {
+        EventPanel.SetActive(false);
+
         Debug.Log("EventEnded");
 
         base.EndEvent(isWin);
