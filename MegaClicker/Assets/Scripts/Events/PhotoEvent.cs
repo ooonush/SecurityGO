@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PhotoEvent : Event
 {
@@ -20,10 +21,7 @@ public class PhotoEvent : Event
     void Update()
     {
         if (CurrentPhoto != null && CurrentPhoto.IsCheck && !isEnding)
-        {
-            isEnding = true;
             StartCoroutine(WaitAndEnd(1));
-        }
     }
 
     void StartPhotoEvent()
@@ -44,6 +42,7 @@ public class PhotoEvent : Event
 
     IEnumerator WaitAndEnd(int sec)
     {
+        isEnding = true;
         yield return new WaitForSeconds(sec);
         ResetEvent();
         this.EndEvent(true);

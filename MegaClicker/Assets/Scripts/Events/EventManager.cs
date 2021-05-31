@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class EventManager : MonoSingleton<EventManager>
 {
-    Device[] devices => MonoSingleton<GameManager>.Instance.Devices;
+    Device[] devices => GameManager.Instance.Devices;
 
     public Event CurrentEvent = null;
     public Event[] Events;
@@ -76,12 +76,9 @@ public class EventManager : MonoSingleton<EventManager>
 
     Device GetRandomBoughtDevice()
     {
-        List<Device> boughtDevices = new List<Device>();
-        foreach (var device in devices)
-            if (device.IsBought)
-                boughtDevices.Add(device);
+        var boughtDevices =  GameManager.Instance.BoughtDevices();
 
-        int randomIndex = (int)Mathf.Round(Random.value * (boughtDevices.Count - 1));
+        int randomIndex = (int)Mathf.Round(Random.value * (boughtDevices.Length - 1));
         Device randomDevice = devices[randomIndex];
 
         return randomDevice;

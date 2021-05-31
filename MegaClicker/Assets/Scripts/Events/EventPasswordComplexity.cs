@@ -44,5 +44,4 @@ public class EventPasswordComplexity : Event
     {
         StartCoroutine(this.WaitAndEnd(2, Panel));
     }
-
 }

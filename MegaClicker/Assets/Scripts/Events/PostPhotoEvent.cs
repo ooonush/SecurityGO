@@ -11,6 +11,7 @@ public enum PostAccess
 
 public class PostPhotoEvent : Event
 {
+    public GameObject AccessButtonsBar;
     public PostPhoto CurrentPhoto;
     public PostPhoto[] Photos;
     bool isEnding = false;
@@ -22,9 +23,9 @@ public class PostPhotoEvent : Event
         foreach (var p in Photos)
             p.gameObject.SetActive(false);
 
-        AccessButtons = FindObjectsOfType<PostPhotoButton>();
-        foreach (var a in AccessButtons)
-            a.gameObject.SetActive(false);
+        AccessButtonsBar.SetActive(false);
+
+        AccessButtons = AccessButtonsBar.GetComponentsInChildren<PostPhotoButton>();
 
         StartEventAction += StartPostPhotoEvent;
     }
@@ -43,17 +44,13 @@ public class PostPhotoEvent : Event
         var random = new System.Random();
         CurrentPhoto = Photos[random.Next(0, Photos.Length)];
 
+        AccessButtonsBar.SetActive(true);
         CurrentPhoto.gameObject.SetActive(true);
-
-        foreach (var b in AccessButtons)
-            b.gameObject.SetActive(true);
     }
 
     public void ResetEvent()
     {
-        foreach (var a in AccessButtons)
-            a.gameObject.SetActive(false);
-
+        AccessButtonsBar.SetActive(false);
         isEnding = false;
         CurrentPhoto.ResetPhoto();
         CurrentPhoto.gameObject.SetActive(false);
