@@ -6,14 +6,11 @@ using UnityEngine.Events;
 
 public class Device : MonoBehaviour
 {
-    public bool IsBought;
+    public int Level;
 
     public int PointsOnClick;
     public int SecurityLevel;
     public int PointsPerSecond;
-    public int PasswordSecurityLevel;
-
-    public string Password;
 
     public Button DeviceButton;
 

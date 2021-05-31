@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PointsBar : MonoBehaviour
 {
-    public GameManager GameManager => MonoSingleton<GameManager>.Instance;
+    public GameManager GameManager => GameManager.Instance;
     private Image bar;
     private Text text;
 
@@ -17,7 +17,15 @@ public class PointsBar : MonoBehaviour
 
     void Update()
     {
-        bar.fillAmount = (float)GameManager.PointsCurrentLevel / GameManager.MaxPoints;
-        text.text = GameManager.PointsCurrentLevel.ToString();
+        if (GameManager != null)
+        {
+            if (float.IsNaN(bar.fillAmount))
+                bar.fillAmount = 0;
+            var b = (float)GameManager.PointsCurrentLevel / GameManager.MaxPoints;
+            bar.fillAmount = Mathf.Abs(Mathf.Lerp(bar.fillAmount, b, 5f * Time.deltaTime));
+
+
+            text.text = GameManager.PointsCurrentLevel.ToString();
+        }
     }
 }

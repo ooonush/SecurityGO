@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DeviceCard : MonoBehaviour
 {
-    public Device Device => MonoSingleton<GameManager>.Instance.Devices[DeviceIndex];
+    public Device Device => GameManager.Instance.Devices[DeviceIndex];
     public int DeviceIndex;
     [SerializeField] List<GameObject> characteristics;
 
@@ -16,9 +16,11 @@ public class DeviceCard : MonoBehaviour
 
     public void SetCharacteristicTexts()
     {
-        characteristics[0].GetComponent<Text>().text = Device.PointsPerSecond.ToString();
-        characteristics[1].GetComponent<Text>().text = Device.SecurityLevel.ToString();
-        characteristics[2].GetComponent<Text>().text = Device.PasswordSecurityLevel.ToString();
-        characteristics[3].GetComponent<Text>().text = Device.PointsOnClick.ToString();
+        if (GameManager.Instance != null)
+        {
+            characteristics[0].GetComponent<Text>().text = Device.PointsPerSecond.ToString();
+            characteristics[1].GetComponent<Text>().text = Device.SecurityLevel.ToString();
+            characteristics[2].GetComponent<Text>().text = Device.PointsOnClick.ToString();
+        }
     }
 }

@@ -12,11 +12,9 @@ public class Event : MonoSingleton<Event>
 
     public void EndEvent(bool isWin)
     {
-        ActiveDevice = null;
         if (EndEventAction != null)
-        {
             EndEventAction(isWin);
-        }
+        EventManager.Instance.EndEvent(isWin);
     }
 
     public void StartEvent(Device device)
