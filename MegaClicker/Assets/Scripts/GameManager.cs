@@ -20,32 +20,37 @@ public class GameManager : MonoSingleton<GameManager>
     {
         get
         {
-            var sum = 0;
+            var sum = 1;
             foreach (var device in BoughtDevices())
                 sum += device.PointsOnClick;
             return sum;
         }
     }
+
     public int PointsPerSecond
     {
         get
         {
             var sum = 0;
-            if (Devices != null)
-                foreach (var device in Devices)
-                    if (device != null && device.Level > 0)
-                        sum += device.PointsPerSecond;
+            foreach (var device in BoughtDevices())
+                sum += device.PointsPerSecond;
             return sum;
         }
     }
 
+    public Text GemsOnEndEventText;
+
     public int Level;
+    public int Gems;
+    public Text GemsText;
     public Text LevelText;
     public int MaxPoints => (int)(Level*16*Mathf.Pow(1.13f, Level));
     public int maxPoints;
 
     void Start()
     {
+        GemsText.text = Gems.ToString();
+        GemsOnEndEventText.text = "";
         StartCoroutine(AddPointsPerSecond());
     }
 
@@ -56,6 +61,20 @@ public class GameManager : MonoSingleton<GameManager>
             yield return new WaitForSeconds(1);
             AddPoints(PointsPerSecond);
         }
+    }
+
+    public IEnumerator AddGems(int gems)
+    {
+        if (gems > 0)
+            GemsOnEndEventText.text = "+" + gems;
+        else
+            GemsOnEndEventText.text = "-" + gems;
+        Gems += gems;
+        if (Gems < 0)
+            Gems = 0;
+        GemsText.text = Gems.ToString();
+        yield return new WaitForSeconds(1);
+        GemsOnEndEventText.text = "";
     }
 
     public IEnumerator SetNewLevel()

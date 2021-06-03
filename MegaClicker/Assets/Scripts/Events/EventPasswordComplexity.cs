@@ -9,7 +9,7 @@ public class EventPasswordComplexity : Event
     public bool isEnding = false;
     public GameObject Panel;
     public Text OutputText;
-    public Text InputText;
+    public Text InputText => inputField.textComponent;
     public InputField inputField;
 
     public void OnClik()
@@ -63,6 +63,7 @@ public class EventPasswordComplexity : Event
         yield return new WaitForSeconds(sec);
         Panel.SetActive(false);
         ResetEvent();
+        this.EndEvent(true);
     }
 
     public void ResetEvent()

@@ -7,17 +7,20 @@ using UnityEngine.UI;
 public class PermissionsEvent : Event
 {
     [SerializeField] Text EventName;
-    [SerializeField] List<Button> PermissionButtons;
+    [SerializeField] Button[] PermissionButtons;
+    [SerializeField] GameObject PermissionButtonsPanel;
     [SerializeField] GameObject EventPanel;
 
     private List<Application> applications = new List<Application>();
     private Application currentApp;
     private int userPermissionCombination;
 
+    bool isEnding;
+
     void Start()
     {
         EventPanel.SetActive(false);
-
+        PermissionButtons = PermissionButtonsPanel.gameObject.GetComponentsInChildren<Button>();
         Application Camera = new Application("Камера",
         (int)(Permissions.Camera | Permissions.Microphone | Permissions.Memory | Permissions.Flashlight));
 
@@ -28,14 +31,12 @@ public class PermissionsEvent : Event
         applications.Add(FlashLight);
 
         StartEventAction += StartPermissionsEvent;
-
-        StartEventAction();
     }
 
     private void StartPermissionsEvent()
     {
         EventPanel.SetActive(true);
-
+        isEnding = false;
         userPermissionCombination = 0;
         currentApp = applications[UnityEngine.Random.Range(0, applications.Count)];
         EventName.text = currentApp.appName;
@@ -47,13 +48,17 @@ public class PermissionsEvent : Event
         }
     }
 
+    IEnumerator WaitAndEnd()
+    {
+        isEnding = true;
+        yield return new WaitForSeconds(1);
+        EventPanel.SetActive(false);
+        this.EndEvent(true);
+    }
+
     public void EndExampleEvent(bool isWin) 
     {
-        EventPanel.SetActive(false);
-
-        Debug.Log("EventEnded");
-
-        base.EndEvent(isWin);
+        StartCoroutine(WaitAndEnd());
     }
 
     public void GivePermission(Button btn)
@@ -86,14 +91,17 @@ public class PermissionsEvent : Event
                 break;
         }
 
-        if (userPermissionCombination == currentApp.permissionsCombination)
+        if (!isEnding)
         {
-            EndExampleEvent(true);
-        }
+            if (userPermissionCombination == currentApp.permissionsCombination)
+            {
+                EndExampleEvent(true);
+            }
 
-        if (userPermissionCombination > currentApp.permissionsCombination)
-        {
-            EndExampleEvent(false);
+            if (userPermissionCombination > currentApp.permissionsCombination)
+            {
+                EndExampleEvent(false);
+            }
         }
 
         Debug.Log(userPermissionCombination);

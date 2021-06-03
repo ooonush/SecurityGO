@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Timers;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class EventManager : MonoSingleton<EventManager>
 {
@@ -10,6 +11,8 @@ public class EventManager : MonoSingleton<EventManager>
 
     public Event CurrentEvent = null;
     public Event[] Events;
+
+    public int GemsOnEndEvent => GameManager.Instance.Level;
 
     //таймер тем меньше чем больше уровень игрока
     UnityAction StartEventTrigger;
@@ -22,9 +25,10 @@ public class EventManager : MonoSingleton<EventManager>
     void Start()
     {
         Events = new Event[] {
-            //MonoSingleton<PhotoEvent>.Instance,
-            //MonoSingleton<EventPasswordComplexity>.Instance,
-            MonoSingleton<PostPhotoEvent>.Instance
+            MonoSingleton<PhotoEvent>.Instance,
+           // MonoSingleton<EventPasswordComplexity>.Instance,
+           // MonoSingleton<PostPhotoEvent>.Instance,
+            //MonoSingleton<PermissionsEvent>.Instance
         };
 
         StartCoroutine(EventTriggerCoroutine());
@@ -41,8 +45,13 @@ public class EventManager : MonoSingleton<EventManager>
         CurrentEvent = GetRandomEvent();
     }
 
-    public void EndEvent(bool IsWin)
+    public void EndEvent(bool isWin)
     {
+        if (isWin)
+            StartCoroutine(GameManager.Instance.AddGems(GemsOnEndEvent));
+        else
+            StartCoroutine(GameManager.Instance.AddGems(-2*GemsOnEndEvent));
+
         ActiveDevice.DeviceButton.onClick.RemoveListener(ClickOnActiveDeviceTrigger);
         IsEventPlaying = false;
         ActiveDevice = null;

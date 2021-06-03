@@ -5,15 +5,12 @@ using UnityEngine.Events;
 public class Event : MonoSingleton<Event>
 {
     public UnityAction StartEventAction;
-    public UnityAction<bool> EndEventAction;
 
     public bool IsActive => ActiveDevice == null;
     public Device ActiveDevice { get; private set; }
 
     public void EndEvent(bool isWin)
     {
-        if (EndEventAction != null)
-            EndEventAction(isWin);
         EventManager.Instance.EndEvent(isWin);
     }
 

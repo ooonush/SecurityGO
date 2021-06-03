@@ -7,28 +7,27 @@ using UnityEngine.UI;
 
 public class Photo : MonoBehaviour
 {
-    public GameObject[] Elements;
+    public PhotoElement[] Elements;
 
     public bool IsCheck;
 
-    private void Start()
-    {
-        Elements = GetComponentsInChildren<Button>().Select(button => button.gameObject).ToArray();
-    }
-
     public void ResetPhoto()
     {
+        IsCheck = false;
+        Elements = GetComponentsInChildren<PhotoElement>();
         foreach (var e in Elements)
-            e.SetActive(true);
+            e.UnCheck();
+        gameObject.SetActive(false);
     }
 
     private void Update()
     {
         IsCheck = true;
+
         if (Elements != null)
         {
             foreach (var e in Elements)
-                if (e.activeInHierarchy)
+                if (!e.IsCheck)
                     IsCheck = false;
         }
         else IsCheck = false;

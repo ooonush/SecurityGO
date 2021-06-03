@@ -13,7 +13,7 @@ public class PhotoEvent : Event
     {
         Photos = FindObjectsOfType<Photo>();
         foreach (var p in Photos)
-            p.gameObject.SetActive(false);
+            p.ResetPhoto();
 
         StartEventAction += StartPhotoEvent;
     }
@@ -21,7 +21,7 @@ public class PhotoEvent : Event
     void Update()
     {
         if (CurrentPhoto != null && CurrentPhoto.IsCheck && !isEnding)
-            StartCoroutine(WaitAndEnd(1));
+            StartCoroutine(WaitAndEnd());
     }
 
     void StartPhotoEvent()
@@ -30,6 +30,10 @@ public class PhotoEvent : Event
         CurrentPhoto = Photos[random.Next(0, Photos.Length)];
 
         CurrentPhoto.gameObject.SetActive(true);
+
+        foreach (var e in CurrentPhoto.Elements)
+            e.UnCheck();
+
     }
 
     public void ResetEvent()
@@ -40,10 +44,10 @@ public class PhotoEvent : Event
         CurrentPhoto = null;
     }
 
-    IEnumerator WaitAndEnd(int sec)
+    IEnumerator WaitAndEnd()
     {
         isEnding = true;
-        yield return new WaitForSeconds(sec);
+        yield return new WaitForSeconds(1);
         ResetEvent();
         this.EndEvent(true);
     }

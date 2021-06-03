@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6201463348793952850}
   - component: {fileID: 1519361281530250183}
   - component: {fileID: 6879535937616673896}
+  - component: {fileID: 3111896813695741050}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -118,8 +119,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
+  isEnding: 0
   Panel: {fileID: 0}
-  Text: {fileID: 0}
+  OutputText: {fileID: 0}
+  InputText: {fileID: 0}
+  inputField: {fileID: 0}
 --- !u!114 &4812833573991506221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,10 +166,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   global: 1
   Devices: []
+  PointsInCurrentLevelText: {fileID: 0}
   PointsText: {fileID: 0}
+  PointsPerSecText: {fileID: 0}
   PointsCurrentLevel: 0
   Points: 0
+  GemsOnEndEventText: {fileID: 0}
   Level: 0
+  Gems: 0
+  GemsText: {fileID: 0}
+  LevelText: {fileID: 0}
+  maxPoints: 0
+  IsNewLevelSetting: 0
 --- !u!114 &6879535937616673896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,4 +194,22 @@ MonoBehaviour:
   AccessButtonsBar: {fileID: 0}
   CurrentPhoto: {fileID: 0}
   Photos: []
+  isEnding: 0
   AccessButtons: []
+--- !u!114 &3111896813695741050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316746405780892019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948acb6fb16c08f4bac424bf3ab495b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  global: 1
+  EventName: {fileID: 0}
+  PermissionButtons: []
+  PermissionButtonsPanel: {fileID: 0}
+  EventPanel: {fileID: 0}

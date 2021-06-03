@@ -14,7 +14,7 @@ public class PostPhotoEvent : Event
     public GameObject AccessButtonsBar;
     public PostPhoto CurrentPhoto;
     public PostPhoto[] Photos;
-    bool isEnding = false;
+    public bool isEnding = false;
     public PostPhotoButton[] AccessButtons;
 
     void Start()
@@ -24,19 +24,9 @@ public class PostPhotoEvent : Event
             p.gameObject.SetActive(false);
 
         AccessButtonsBar.SetActive(false);
-
         AccessButtons = AccessButtonsBar.GetComponentsInChildren<PostPhotoButton>();
 
         StartEventAction += StartPostPhotoEvent;
-    }
-
-    void Update()
-    {
-        if (CurrentPhoto != null && CurrentPhoto.IsCheck && !isEnding)
-        {
-            isEnding = true;
-            StartCoroutine(WaitAndEnd(1));
-        }
     }
 
     void StartPostPhotoEvent()
@@ -48,19 +38,24 @@ public class PostPhotoEvent : Event
         CurrentPhoto.gameObject.SetActive(true);
     }
 
+    public void EndPostPhotoEvent(bool isWin)
+    {
+        StartCoroutine(WaitAndEnd(isWin));
+    }
+
     public void ResetEvent()
     {
         AccessButtonsBar.SetActive(false);
         isEnding = false;
-        CurrentPhoto.ResetPhoto();
         CurrentPhoto.gameObject.SetActive(false);
         CurrentPhoto = null;
     }
 
-    IEnumerator WaitAndEnd(int sec)
+    IEnumerator WaitAndEnd(bool isWin)
     {
-        yield return new WaitForSeconds(sec);
+        isEnding = true;
+        yield return new WaitForSeconds(1);
         ResetEvent();
-        this.EndEvent(true);
+        this.EndEvent(isWin);
     }
 }

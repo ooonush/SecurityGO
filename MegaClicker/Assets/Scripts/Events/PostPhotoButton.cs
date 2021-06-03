@@ -7,6 +7,7 @@ public class PostPhotoButton : MonoBehaviour
 {
     public PostAccess Access;
     public Button Button;
+    public PostPhotoEvent postPhotoEvent => MonoSingleton<PostPhotoEvent>.Instance;
 
     private void Start()
     {
@@ -16,8 +17,13 @@ public class PostPhotoButton : MonoBehaviour
 
     public void OnClick()
     {
-        var PhotoAccess = MonoSingleton<PostPhotoEvent>.Instance.CurrentPhoto.Access;
-        if (PhotoAccess == Access)
-            MonoSingleton<PostPhotoEvent>.Instance.CurrentPhoto.IsCheck = true;
+        if (!MonoSingleton<PostPhotoEvent>.Instance.isEnding)
+        {
+            var PhotoAccess = postPhotoEvent.CurrentPhoto.Access;
+            if (PhotoAccess == Access)
+                postPhotoEvent.EndPostPhotoEvent(true);
+            else
+                postPhotoEvent.EndPostPhotoEvent(false);
+        }
     }
 }
