@@ -24,7 +24,6 @@ public class PointsBar : MonoBehaviour
             var b = (float)GameManager.PointsCurrentLevel / GameManager.MaxPoints;
             bar.fillAmount = Mathf.Abs(Mathf.Lerp(bar.fillAmount, b, 5f * Time.deltaTime));
 
-
             text.text = GameManager.PointsCurrentLevel.ToString();
         }
     }

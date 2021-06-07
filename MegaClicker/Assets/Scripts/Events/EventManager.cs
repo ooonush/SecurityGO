@@ -26,8 +26,8 @@ public class EventManager : MonoSingleton<EventManager>
     {
         Events = new Event[] {
             MonoSingleton<PhotoEvent>.Instance,
-           // MonoSingleton<EventPasswordComplexity>.Instance,
-           // MonoSingleton<PostPhotoEvent>.Instance,
+            //MonoSingleton<EventPasswordComplexity>.Instance,
+            MonoSingleton<PostPhotoEvent>.Instance,
             //MonoSingleton<PermissionsEvent>.Instance
         };
 
@@ -41,12 +41,15 @@ public class EventManager : MonoSingleton<EventManager>
         Debug.Log("клик по нужному устройству");
         IsEventPlaying = true;
         ActiveDevice = GetRandomBoughtDevice();
+        ActiveDevice.AttackScreen.SetActive(true);
         ActiveDevice.DeviceButton.onClick.AddListener(ClickOnActiveDeviceTrigger);
         CurrentEvent = GetRandomEvent();
     }
 
     public void EndEvent(bool isWin)
     {
+        ActiveDevice.AttackScreen.SetActive(false);
+
         if (isWin)
             StartCoroutine(GameManager.Instance.AddGems(GemsOnEndEvent));
         else

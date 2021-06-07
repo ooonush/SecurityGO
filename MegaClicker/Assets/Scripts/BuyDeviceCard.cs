@@ -11,6 +11,10 @@ public class BuyDeviceCard : MonoBehaviour
     public Text PointsOnClickText;
     public Text SecurityLevelText;
 
+    public Text BuyByPointsText;
+    public Text BuyByGemsText;
+
+
     void Start()
     {
         SetBuyDeviceCard();
@@ -29,19 +33,30 @@ public class BuyDeviceCard : MonoBehaviour
         SecurityLevelText.text = "+" + (CurrentDevice.GetSecurityLevel(CurrentDevice.Level + 1)
             - CurrentDevice.GetSecurityLevel(CurrentDevice.Level))
             .ToString();
+
+        GameManager.Instance.SetTexts();
+
+        BuyByPointsText.text = CurrentDevice.PointsPrice.ToString();
+        BuyByGemsText.text = CurrentDevice.GemsPrice.ToString();
     }
 
     public void DeviceLevelUPByPoints()
     {
         if (GameManager.Instance.Points > CurrentDevice.PointsPrice)
+        {
+            GameManager.Instance.Points -= CurrentDevice.PointsPrice;
             CurrentDevice.Level++;
-        SetBuyDeviceCard();
+            SetBuyDeviceCard();
+        }
     }
 
     public void DeviceLevelUPByGems()
     {
         if (GameManager.Instance.Gems > CurrentDevice.GemsPrice)
+        {
+            GameManager.Instance.Gems -= CurrentDevice.GemsPrice;
             CurrentDevice.Level++;
-        SetBuyDeviceCard();
+            SetBuyDeviceCard();
+        }
     }
 }

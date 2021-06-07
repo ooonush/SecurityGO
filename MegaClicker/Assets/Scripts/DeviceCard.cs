@@ -18,7 +18,7 @@ public class DeviceCard : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            characteristics[0].GetComponent<Text>().text = Device.PointsPerSecond.ToString();
+            characteristics[0].GetComponent<Text>().text = Device.PointsPerSec.ToString();
             characteristics[1].GetComponent<Text>().text = Device.SecurityLevel.ToString();
             characteristics[2].GetComponent<Text>().text = Device.PointsOnClick.ToString();
         }

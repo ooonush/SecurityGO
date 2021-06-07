@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Device : MonoBehaviour
 {
     public int Level;
+    public GameObject AttackScreen;
 
     public int PointsOnClickInFirstLevel;
     public int PointsPerSecInFirstLevel;
@@ -14,7 +15,7 @@ public class Device : MonoBehaviour
 
     public int PointsOnClick => GetPointsOnClick(Level);
     public int SecurityLevel => GetSecurityLevel(Level);
-    public int PointsPerSecond => GetPointsPerSec(Level);
+    public int PointsPerSec => GetPointsPerSec(Level);
 
     public int GetPointsOnClick(int level)
     {
@@ -31,21 +32,32 @@ public class Device : MonoBehaviour
         return (int)(PointsOnClickInFirstLevel * level * 2 * level);
     }
 
-    int pointsPrice;
-    public int PointsPrice => (int)(pointsPrice * Level * 0.5);
+    [SerializeField] int pointsPrice;
+    public int PointsPrice => (int)(pointsPrice * Level * Level * 3);
 
-    int gemsPrice;
-    public int GemsPrice => (int)(gemsPrice * Level * 0.5);
+    [SerializeField] int gemsPrice;
+    public int GemsPrice => (int)(gemsPrice * Level * Level * 3);
 
     public Button DeviceButton;
 
     void Start()
     {
+        AttackScreen.SetActive(false);
         DeviceButton = gameObject.GetComponent<Button>();
+        DeviceButton.onClick.AddListener(OnClickDevice);
+    }
+
+    void OnClickDevice()
+    {
+        GameManager.Instance.DeviceInfo.gameObject.SetActive(false);
+        if (EventManager.Instance.ActiveDevice != this)
+            GameManager.Instance.DeviceInfo.ActivateBar(this);
     }
 
     private void Update()
     {
-        
+        gameObject.GetComponent<Image>().color = Level == 0 ? 
+            new Color(255, 255, 255, 0.4f) :
+            new Color(255, 255, 255, 1);
     }
 }

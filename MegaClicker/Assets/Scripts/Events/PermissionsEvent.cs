@@ -21,14 +21,23 @@ public class PermissionsEvent : Event
     {
         EventPanel.SetActive(false);
         PermissionButtons = PermissionButtonsPanel.gameObject.GetComponentsInChildren<Button>();
-        Application Camera = new Application("Камера",
-        (int)(Permissions.Camera | Permissions.Microphone | Permissions.Memory | Permissions.Flashlight));
 
+        Application Camera = new Application("Камера",
+            (int)(Permissions.Camera | Permissions.Microphone | Permissions.Memory | Permissions.Flashlight));
         Application FlashLight = new Application("Фонарик",
             (int)Permissions.Flashlight);
+        Application PhotoEditor = new Application("Фоторедактор",
+            (int)(Permissions.Camera | Permissions.Memory));
+        Application Translator = new Application("Переводчик",
+            (int)(Permissions.Camera | Permissions.Microphone | Permissions.Memory));
+        Application Game = new Application("Игра Flappy Bird",
+            (int)Permissions.Memory);
 
         applications.Add(Camera);
         applications.Add(FlashLight);
+        applications.Add(PhotoEditor);
+        applications.Add(Translator);
+        applications.Add(Game);
 
         StartEventAction += StartPermissionsEvent;
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 
 public class GameManager : MonoSingleton<GameManager>
@@ -13,6 +14,8 @@ public class GameManager : MonoSingleton<GameManager>
     public Text PointsPerSecText;
 
     //public GameObject Virus;
+
+    public DeviceInfo DeviceInfo;
 
     public int PointsCurrentLevel;
     public int Points;
@@ -33,24 +36,25 @@ public class GameManager : MonoSingleton<GameManager>
         {
             var sum = 0;
             foreach (var device in BoughtDevices())
-                sum += device.PointsPerSecond;
+                sum += device.PointsPerSec;
             return sum;
         }
     }
 
     public Text GemsOnEndEventText;
 
-    public int Level;
+    [NonSerialized] public int Level = 1;
     public int Gems;
     public Text GemsText;
     public Text LevelText;
-    public int MaxPoints => (int)(Level*16*Mathf.Pow(1.13f, Level));
+    public int MaxPoints => (int)(Level*Level*Mathf.Pow(1.4f, Level) + 50);
     public int maxPoints;
 
     void Start()
     {
         GemsText.text = Gems.ToString();
         GemsOnEndEventText.text = "";
+        SetTexts();
         StartCoroutine(AddPointsPerSecond());
     }
 
@@ -72,7 +76,7 @@ public class GameManager : MonoSingleton<GameManager>
         Gems += gems;
         if (Gems < 0)
             Gems = 0;
-        GemsText.text = Gems.ToString();
+        SetTexts();
         yield return new WaitForSeconds(1);
         GemsOnEndEventText.text = "";
     }
@@ -85,7 +89,7 @@ public class GameManager : MonoSingleton<GameManager>
         yield return new WaitForSeconds(0.4f);
         PointsCurrentLevel = 0;
         Level++;
-        LevelText.text = Level.ToString();
+        SetTexts();
         yield return new WaitForSeconds(0.4f);
 
         IsNewLevelSetting = false;
@@ -99,22 +103,29 @@ public class GameManager : MonoSingleton<GameManager>
 
     public bool IsNewLevelSetting;
 
+    public void SetTexts()
+    {
+        LevelText.text = Level.ToString();
+        PointsText.text = Points.ToString();
+        GemsText.text = Gems.ToString();
+    }
+
     public void AddPoints(int points)
     {
         if (!IsNewLevelSetting)
         {
             PointsCurrentLevel += points;
             Points += points;
-            PointsInCurrentLevelText.text = Points.ToString();
 
             if (PointsCurrentLevel > MaxPoints)
                 StartCoroutine(SetNewLevel());
         }
-        PointsText.text = Points.ToString();
+        SetTexts();
     }
 
     public void AddPointOnClick()
     {
+        DeviceInfo.gameObject.SetActive(false);
         AddPoints(PointsOnClick);
     }
 
