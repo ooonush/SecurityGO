@@ -6,7 +6,6 @@ using static PasswordComplexity;
 public class EventPasswordComplexity : Event
 {
     public GameObject Panel;
-    public Text Password => inputField.textComponent;
     public InputField inputField;
     public Button Button;
     public bool isWin = false;
@@ -20,7 +19,7 @@ public class EventPasswordComplexity : Event
     {
         Button.enabled = false;
 
-        if (GetComplexity(Password.text) == Complexity.reliable) isWin = true;
+        if (GetComplexity(inputField.text) == Complexity.reliable) isWin = true;
 
         EndExampleEvent();
     }
@@ -48,13 +47,13 @@ public class EventPasswordComplexity : Event
     public IEnumerator WaitAndEnd(int sec)
     {
         yield return new WaitForSeconds(sec);
+                ResetEvent();
         Panel.SetActive(false);
-        ResetEvent();
         EndEvent(isWin);
     }
 
     public void ResetEvent()
     {
-        Password.text = "";
+        inputField.text = "";
     }
 }

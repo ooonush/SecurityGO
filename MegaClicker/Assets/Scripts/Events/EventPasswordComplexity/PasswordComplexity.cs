@@ -16,7 +16,7 @@ public static class PasswordComplexity
     {
         var complexity = 0;
 
-        if (password.Length > 12) complexity++;
+        if (password.Length >= 12) complexity++;
         if (ContainsDigit(password)) complexity++;
         if (ContainsLowerLetter(password)) complexity++;
         if (ContainsUpperLetter(password)) complexity++;

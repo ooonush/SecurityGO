@@ -26,9 +26,9 @@ public class EventManager : MonoSingleton<EventManager>
     {
         Events = new Event[] {
             MonoSingleton<PhotoEvent>.Instance,
-            //MonoSingleton<EventPasswordComplexity>.Instance,
+            MonoSingleton<EventPasswordComplexity>.Instance,
             MonoSingleton<PostPhotoEvent>.Instance,
-            //MonoSingleton<PermissionsEvent>.Instance
+            MonoSingleton<PermissionsEvent>.Instance
         };
 
         StartCoroutine(EventTriggerCoroutine());
