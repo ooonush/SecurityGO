@@ -5,15 +5,24 @@ using static PasswordComplexity;
 
 public class EventPasswordComplexity : Event
 {
-    public bool isEnding = false;
     public GameObject Panel;
-    public Text OutputText;
-    public Text InputText => inputField.textComponent;
+    public Text Password => inputField.textComponent;
     public InputField inputField;
+    public Button Button;
+    public bool isWin = false;
+
+    public void OnClikTest()
+    {
+        StartExampleEvent();
+    }
 
     public void OnClik()
     {
-        StartExampleEvent();
+        Button.enabled = false;
+
+        if (GetComplexity(Password.text) == Complexity.reliable) isWin = true;
+
+        EndExampleEvent();
     }
 
     private void Start()
@@ -23,31 +32,10 @@ public class EventPasswordComplexity : Event
         StartEventAction += StartExampleEvent; 
     }
 
-    public void CheckPassword(string password)
-    {
-        if (!isEnding)
-        {
-            var complexity = GetComplexity(password);
-
-            if (complexity == Complexity.noPassword)
-            {
-                OutputText.text = "¬ведите пароль!";
-            }
-            else if (complexity == Complexity.reliable)
-            {
-                OutputText.text = string.Format("—ложность: {0}, пароль изменЄн", complexity);
-                EndExampleEvent();
-            }
-            else
-            {
-                OutputText.text = string.Format("—ложность: {0}, попробуйте ещЄ", complexity);
-            }
-        }
-    }
-
     public void StartExampleEvent()
     {
         inputField.enabled = true;
+        Button.enabled = true;
         Panel.SetActive(true);
     }
 
@@ -62,12 +50,11 @@ public class EventPasswordComplexity : Event
         yield return new WaitForSeconds(sec);
         Panel.SetActive(false);
         ResetEvent();
-        this.EndEvent(true);
+        EndEvent(isWin);
     }
 
     public void ResetEvent()
     {
-        OutputText.text = "¬ведите пароль!";
-        InputText.text = "";
+        Password.text = "";
     }
 }
