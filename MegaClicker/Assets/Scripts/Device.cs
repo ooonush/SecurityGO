@@ -19,24 +19,24 @@ public class Device : MonoBehaviour
 
     public int GetPointsOnClick(int level)
     {
-        return (int)(PointsOnClickInFirstLevel * level * 2 * level);
+        return (int)(PointsOnClickInFirstLevel * level * 2 * level) + PointsOnClickInFirstLevel;
     }
 
     public int GetPointsPerSec(int level)
     {
-        return (int)(PointsOnClickInFirstLevel * level * 2 * level);
+        return (int)(PointsPerSecInFirstLevel * level * 2 * level + PointsPerSecInFirstLevel);
     }
 
     public int GetSecurityLevel(int level)
     {
-        return (int)(PointsOnClickInFirstLevel * level * 2 * level);
+        return (int)(SecurityLevelInFirstLevel * level * 2 * level + SecurityLevelInFirstLevel);
     }
 
     [SerializeField] int pointsPrice;
-    public int PointsPrice => (int)(pointsPrice * Level * Level * 3);
+    public int PointsPrice => (int)(pointsPrice * Level * Level * 3) + pointsPrice;
 
     [SerializeField] int gemsPrice;
-    public int GemsPrice => (int)(gemsPrice * Level * Level * 3);
+    public int GemsPrice => (int)(gemsPrice * Level * Level * 3) + gemsPrice;
 
     public Button DeviceButton;
 

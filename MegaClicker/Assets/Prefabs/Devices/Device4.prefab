@@ -32,10 +32,10 @@ RectTransform:
   m_Father: {fileID: 3689105641035174929}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.024, y: 0.0356407}
-  m_AnchorMax: {x: 0.97200006, y: 0.95800006}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.00016784668}
-  m_SizeDelta: {x: -0.00018311, y: -0.00027466}
+  m_AnchorMin: {x: 0.021130359, y: 0.48166114}
+  m_AnchorMax: {x: 0.9398173, y: 0.97552454}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -0.00012207, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7345942173934787455
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0efe7cb162c7ffe45b3c5506fe782bba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3b53dec47c211d4aa26ca0f88c84e9e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 3689105641035174931}
   - component: {fileID: 3689105641035174928}
   m_Layer: 5
-  m_Name: Device2
+  m_Name: Device4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 389.7834, y: 274.8999}
+  m_SizeDelta: {x: 531, y: 599}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3689105641035174933
 CanvasRenderer:
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7ac8cc85de170b844baa016174aa148d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d829884dbe71259459cadfdfcb4aa329, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

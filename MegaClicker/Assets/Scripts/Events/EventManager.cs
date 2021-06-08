@@ -22,6 +22,8 @@ public class EventManager : MonoSingleton<EventManager>
     public Device ActiveDevice = null;
     public UnityAction ClickOnActiveDeviceTrigger;
 
+    public GameObject EventsPanel;
+
     void Start()
     {
         Events = new Event[] {
@@ -31,9 +33,13 @@ public class EventManager : MonoSingleton<EventManager>
             MonoSingleton<PermissionsEvent>.Instance
         };
 
+        
+
         StartCoroutine(EventTriggerCoroutine());
         StartEventTrigger += StartEvent;
         ClickOnActiveDeviceTrigger += ClickOnActiveDevice;
+
+        EventsPanel.SetActive(false);
     }
 
     void StartEvent()
@@ -49,6 +55,7 @@ public class EventManager : MonoSingleton<EventManager>
     public void EndEvent(bool isWin)
     {
         ActiveDevice.AttackScreen.SetActive(false);
+        EventsPanel.SetActive(false);
 
         if (isWin)
             StartCoroutine(GameManager.Instance.AddGems(GemsOnEndEvent));
@@ -65,6 +72,8 @@ public class EventManager : MonoSingleton<EventManager>
 
     void ClickOnActiveDevice()
     {
+        EventsPanel.SetActive(true);
+
         CurrentEvent.StartEventAction();
         //Debug.Log("клик по нужному устройству");
     }
@@ -91,7 +100,7 @@ public class EventManager : MonoSingleton<EventManager>
         var boughtDevices =  GameManager.Instance.BoughtDevices();
 
         int randomIndex = (int)Mathf.Round(Random.value * (boughtDevices.Length - 1));
-        Device randomDevice = devices[randomIndex];
+        Device randomDevice = boughtDevices[randomIndex];
 
         return randomDevice;
     }

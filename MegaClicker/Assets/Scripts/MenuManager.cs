@@ -5,6 +5,12 @@ using UnityEngine;
 public class MenuManager : MonoSingleton<MenuManager>
 {
     public GameObject[] Menus;
+    public GameObject MainMenu;
+
+    private void Start()
+    {
+        ChangeMenu(MainMenu);
+    }
 
     public void ChangeMenu(GameObject menu)
     {

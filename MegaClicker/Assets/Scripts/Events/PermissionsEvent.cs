@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PermissionsEvent : Event
 {
     [SerializeField] Text EventName;
-    [SerializeField] Button[] PermissionButtons;
+    Button[] PermissionButtons;
     [SerializeField] GameObject PermissionButtonsPanel;
     [SerializeField] GameObject EventPanel;
 
@@ -57,24 +57,24 @@ public class PermissionsEvent : Event
         }
     }
 
-    IEnumerator WaitAndEnd()
+    IEnumerator WaitAndEnd(bool isWin)
     {
         isEnding = true;
         yield return new WaitForSeconds(1);
         EventPanel.SetActive(false);
-        this.EndEvent(true);
+        this.EndEvent(isWin);
     }
 
     public void EndExampleEvent(bool isWin) 
     {
-        StartCoroutine(WaitAndEnd());
+        StartCoroutine(WaitAndEnd(isWin));
     }
 
     public void GivePermission(Button btn)
     {
-        btn.GetComponent<Image>().color = Color.green;
+        btn.GetComponent<Image>().color = Color.blue;
         btn.interactable = false;
-
+        Debug.Log(btn.name);
         switch (btn.name)
         {
             case "LocationBtn":
@@ -112,8 +112,6 @@ public class PermissionsEvent : Event
                 EndExampleEvent(false);
             }
         }
-
-        Debug.Log(userPermissionCombination);
     }
 }
 

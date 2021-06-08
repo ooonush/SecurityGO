@@ -15,7 +15,7 @@ public class EventPasswordComplexity : Event
         StartExampleEvent();
     }
 
-    public void OnClik()
+    public void ChekPasswordOnClik()
     {
         Button.enabled = false;
 
@@ -41,7 +41,7 @@ public class EventPasswordComplexity : Event
     public void EndExampleEvent()
     {
         inputField.enabled = false;
-        StartCoroutine(WaitAndEnd(2));
+        StartCoroutine(WaitAndEnd(1));
     }
 
     public IEnumerator WaitAndEnd(int sec)
