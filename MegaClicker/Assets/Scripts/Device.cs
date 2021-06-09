@@ -13,30 +13,31 @@ public class Device : MonoBehaviour
     public int PointsPerSecInFirstLevel;
     public int SecurityLevelInFirstLevel;
 
-    public int PointsOnClick => GetPointsOnClick(Level);
-    public int SecurityLevel => GetSecurityLevel(Level);
-    public int PointsPerSec => GetPointsPerSec(Level);
+    public int PointsOnClick => GetPointsOnClick(Level != 0 ? Level : 1);
+    public int SecurityLevel => GetSecurityLevel(Level != 0 ? Level : 1);
+    public int PointsPerSec => GetPointsPerSec(Level != 0 ? Level : 1);
 
     public int GetPointsOnClick(int level)
     {
-        return (int)(PointsOnClickInFirstLevel * level * 2 * level) + PointsOnClickInFirstLevel;
+        return PointsOnClickInFirstLevel * (level * level);
     }
 
     public int GetPointsPerSec(int level)
     {
-        return (int)(PointsPerSecInFirstLevel * level * 2 * level + PointsPerSecInFirstLevel);
+        return PointsPerSecInFirstLevel * (level * level);
     }
 
     public int GetSecurityLevel(int level)
     {
-        return (int)(SecurityLevelInFirstLevel * level * 2 * level + SecurityLevelInFirstLevel);
+        var securityLevel = SecurityLevelInFirstLevel + 5 * level;
+        return securityLevel > 100 ? 100 : securityLevel;
     }
 
     [SerializeField] int pointsPrice;
-    public int PointsPrice => (int)(pointsPrice * Level * Level * 3) + pointsPrice;
+    public int PointsPrice => pointsPrice * Level * Level + pointsPrice;
 
     [SerializeField] int gemsPrice;
-    public int GemsPrice => (int)(gemsPrice * Level * Level * 3) + gemsPrice;
+    public int GemsPrice => gemsPrice * Level * Level + gemsPrice;
 
     public Button DeviceButton;
 
@@ -57,7 +58,7 @@ public class Device : MonoBehaviour
     private void Update()
     {
         gameObject.GetComponent<Image>().color = Level == 0 ? 
-            new Color(255, 255, 255, 0.4f) :
+            new Color(0.3f, 0.3f, 0.3f, 0.5f) :
             new Color(255, 255, 255, 1);
     }
 }

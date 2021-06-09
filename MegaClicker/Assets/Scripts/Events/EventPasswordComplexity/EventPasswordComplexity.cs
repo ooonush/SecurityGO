@@ -8,7 +8,6 @@ public class EventPasswordComplexity : Event
     public GameObject Panel;
     public InputField inputField;
     public Button Button;
-    public bool isWin = false;
 
     public void OnClikTest()
     {
@@ -19,9 +18,7 @@ public class EventPasswordComplexity : Event
     {
         Button.enabled = false;
 
-        if (GetComplexity(inputField.text) == Complexity.reliable) isWin = true;
-
-        EndExampleEvent();
+        EndExampleEvent(GetComplexity(inputField.text) == Complexity.reliable);
     }
 
     private void Start()
@@ -38,13 +35,13 @@ public class EventPasswordComplexity : Event
         Panel.SetActive(true);
     }
 
-    public void EndExampleEvent()
+    public void EndExampleEvent(bool isWin)
     {
         inputField.enabled = false;
-        StartCoroutine(WaitAndEnd(1));
+        StartCoroutine(WaitAndEnd(1, isWin));
     }
 
-    public IEnumerator WaitAndEnd(int sec)
+    public IEnumerator WaitAndEnd(int sec, bool isWin)
     {
         yield return new WaitForSeconds(sec);
                 ResetEvent();

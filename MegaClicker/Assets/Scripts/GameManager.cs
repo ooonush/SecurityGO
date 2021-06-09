@@ -13,6 +13,7 @@ public class GameManager : MonoSingleton<GameManager>
     public Text PointsText;
     public Text PointsPerSecText;
 
+
     //public GameObject Virus;
 
     public DeviceInfo DeviceInfo;
@@ -95,8 +96,12 @@ public class GameManager : MonoSingleton<GameManager>
         IsNewLevelSetting = false;
     }
 
+    Vector2 dPos;
+
+    public Canvas MainCanvas => FindObjectOfType<Canvas>();
+    public ParticleSystem TouchParticle;
     private void Update()
-    {
+    {            
         maxPoints = MaxPoints;
         PointsPerSecText.text = PointsPerSecond.ToString() + $"/min";
     }
@@ -125,8 +130,16 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void AddPointOnClick()
     {
+        dPos = new Vector2(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2);
+        var touchParticle = Instantiate(TouchParticle, MainCanvas.transform);
+        touchParticle.transform.localPosition = (Vector2)Input.mousePosition - dPos;
+        
+        foreach (var p in FindObjectsOfType<ParticleSystem>())
+            if (p.isStopped)
+                Destroy(p.gameObject);
+
         DeviceInfo.gameObject.SetActive(false);
-        AddPoints(PointsOnClick);
+            AddPoints(PointsOnClick);
     }
 
     public Device[] BoughtDevices()
