@@ -12,7 +12,7 @@ public class GameManager : MonoSingleton<GameManager>
     public Text PointsInCurrentLevelText;
     public Text PointsText;
     public Text PointsPerSecText;
-
+    public AudioSource ClickSource;
 
     //public GameObject Virus;
 
@@ -57,6 +57,7 @@ public class GameManager : MonoSingleton<GameManager>
         GemsOnEndEventText.text = "";
         SetTexts();
         StartCoroutine(AddPointsPerSecond());
+        ClickSource = GetComponent<AudioSource>();
     }
 
     public IEnumerator AddPointsPerSecond()
@@ -137,7 +138,7 @@ public class GameManager : MonoSingleton<GameManager>
         foreach (var p in FindObjectsOfType<ParticleSystem>())
             if (p.isStopped)
                 Destroy(p.gameObject);
-
+        ClickSource.Play();
         DeviceInfo.gameObject.SetActive(false);
             AddPoints(PointsOnClick);
     }
