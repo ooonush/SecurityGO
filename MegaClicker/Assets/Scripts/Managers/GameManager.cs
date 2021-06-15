@@ -98,11 +98,6 @@ public class GameManager : MonoSingleton<GameManager>
         IsNewLevelSetting = false;
     }
 
-    public void OnClickWikiButton()
-    {
-        Wiki.gameObject.SetActive(!Wiki.gameObject.activeInHierarchy);
-    }
-
     Vector2 dPos;
 
     public Canvas MainCanvas => FindObjectOfType<Canvas>();
