@@ -13,7 +13,7 @@ public class EventSpamMessages : Event
     private Queue<Message> queueMessages;
     private Message actualMessage;
     private int countOfRightAnswers;
-    private const int needRightAnswers = 5;
+    private const int needRightAnswers = 3;
 
 
     public void OnClikTest() => StartExampleEvent();
