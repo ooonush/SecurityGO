@@ -106,6 +106,7 @@ MonoBehaviour:
   CurrentEvent: {fileID: 0}
   Events: []
   ActiveDevice: {fileID: 0}
+  EventsPanel: {fileID: 0}
 --- !u!114 &8071596985171690563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,11 +120,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  isEnding: 0
+  WikiText: 
   Panel: {fileID: 0}
-  OutputText: {fileID: 0}
-  InputText: {fileID: 0}
   inputField: {fileID: 0}
+  Button: {fileID: 0}
 --- !u!114 &4812833573991506221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +137,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
+  WikiText: 
   Photos: []
+  Panel: {fileID: 0}
 --- !u!114 &6201463348793952850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   global: 1
   Menus: []
+  MainMenu: {fileID: 0}
 --- !u!114 &1519361281530250183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,14 +172,16 @@ MonoBehaviour:
   PointsInCurrentLevelText: {fileID: 0}
   PointsText: {fileID: 0}
   PointsPerSecText: {fileID: 0}
+  WikiText: {fileID: 0}
+  DeviceInfo: {fileID: 0}
   PointsCurrentLevel: 0
   Points: 0
   GemsOnEndEventText: {fileID: 0}
-  Level: 0
   Gems: 0
   GemsText: {fileID: 0}
   LevelText: {fileID: 0}
   maxPoints: 0
+  TouchParticle: {fileID: 0}
   IsNewLevelSetting: 0
 --- !u!114 &6879535937616673896
 MonoBehaviour:
@@ -191,11 +196,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  AccessButtonsBar: {fileID: 0}
+  WikiText: 
   CurrentPhoto: {fileID: 0}
   Photos: []
   isEnding: 0
   AccessButtons: []
+  Panel: {fileID: 0}
 --- !u!114 &3111896813695741050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
+  WikiText: 
   EventName: {fileID: 0}
-  PermissionButtons: []
   PermissionButtonsPanel: {fileID: 0}
   EventPanel: {fileID: 0}

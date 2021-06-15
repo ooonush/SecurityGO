@@ -9,6 +9,9 @@ public class Event : MonoSingleton<Event>
     public bool IsActive => ActiveDevice == null;
     public Device ActiveDevice { get; private set; }
 
+    public string WikiText;
+    public string WikiName;
+
     public void EndEvent(bool isWin)
     {
         EventManager.Instance.EndEvent(isWin);

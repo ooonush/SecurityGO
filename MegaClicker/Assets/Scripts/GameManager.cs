@@ -13,8 +13,7 @@ public class GameManager : MonoSingleton<GameManager>
     public Text PointsText;
     public Text PointsPerSecText;
 
-
-    //public GameObject Virus;
+    public Wiki Wiki;
 
     public DeviceInfo DeviceInfo;
 
@@ -40,6 +39,11 @@ public class GameManager : MonoSingleton<GameManager>
                 sum += device.PointsPerSec;
             return sum;
         }
+    }
+
+    public void OnClickWikiButton()
+    {
+        Wiki.gameObject.SetActive(!Wiki.gameObject.activeInHierarchy);
     }
 
     public Text GemsOnEndEventText;

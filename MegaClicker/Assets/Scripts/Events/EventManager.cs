@@ -23,6 +23,8 @@ public class EventManager : MonoSingleton<EventManager>
     public UnityAction ClickOnActiveDeviceTrigger;
 
     public GameObject EventsPanel;
+    public Text WikiText => GameManager.Instance.Wiki.WikiText;
+    public Text WikiName => GameManager.Instance.Wiki.WikiName;
 
     void Start()
     {
@@ -32,8 +34,6 @@ public class EventManager : MonoSingleton<EventManager>
             MonoSingleton<PostPhotoEvent>.Instance,
             MonoSingleton<PermissionsEvent>.Instance
         };
-
-        
 
         StartCoroutine(EventTriggerCoroutine());
         StartEventTrigger += StartEvent;
@@ -54,6 +54,7 @@ public class EventManager : MonoSingleton<EventManager>
 
     public void EndEvent(bool isWin)
     {
+        MenuManager.Instance.ChangeMenu(MenuManager.Instance.Main);
         ActiveDevice.AttackScreen.SetActive(false);
         EventsPanel.SetActive(false);
 
@@ -73,6 +74,9 @@ public class EventManager : MonoSingleton<EventManager>
     void ClickOnActiveDevice()
     {
         EventsPanel.SetActive(true);
+
+        WikiText.text = CurrentEvent.WikiText;
+        WikiName.text = CurrentEvent.WikiName;
 
         CurrentEvent.StartEventAction();
         //Debug.Log("клик по нужному устройству");
