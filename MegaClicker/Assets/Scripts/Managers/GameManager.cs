@@ -12,8 +12,14 @@ public class GameManager : MonoSingleton<GameManager>
     public Text PointsInCurrentLevelText;
     public Text PointsText;
     public Text PointsPerSecText;
+<<<<<<< HEAD:MegaClicker/Assets/Scripts/GameManager.cs
 
     public Wiki Wiki;
+=======
+    public AudioSource ClickSource;
+
+    //public GameObject Virus;
+>>>>>>> de6425d205c7a3c7cc985e077b45b4444e92058d:MegaClicker/Assets/Scripts/Managers/GameManager.cs
 
     public DeviceInfo DeviceInfo;
 
@@ -61,6 +67,7 @@ public class GameManager : MonoSingleton<GameManager>
         GemsOnEndEventText.text = "";
         SetTexts();
         StartCoroutine(AddPointsPerSecond());
+        ClickSource = GetComponent<AudioSource>();
     }
 
     public IEnumerator AddPointsPerSecond()
@@ -141,7 +148,7 @@ public class GameManager : MonoSingleton<GameManager>
         foreach (var p in FindObjectsOfType<ParticleSystem>())
             if (p.isStopped)
                 Destroy(p.gameObject);
-
+        ClickSource.Play();
         DeviceInfo.gameObject.SetActive(false);
             AddPoints(PointsOnClick);
     }
