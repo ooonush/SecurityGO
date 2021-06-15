@@ -19,13 +19,6 @@ public class SaveLoadManager : MonoBehaviour
         StartCoroutine(WaitAndSave(10));
     }
 
-    private IEnumerator WaitAndLoad(int sec)
-    {
-        yield return new WaitForSeconds(sec);
-
-        
-    }
-
     private IEnumerator WaitAndSave(int sec)
     {
         while(true)
