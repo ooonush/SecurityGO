@@ -37,7 +37,6 @@ public class PhotoEvent : Event
 
         foreach (var e in CurrentPhoto.Elements)
             e.UnCheck();
-
     }
 
     public void ResetEvent()

@@ -35,9 +35,7 @@ public class EventManager : MonoSingleton<EventManager>
             MonoSingleton<PostPhotoEvent>.Instance,
             MonoSingleton<PermissionsEvent>.Instance
         };
-
         
-
         StartCoroutine(EventTriggerCoroutine());
         StartEventTrigger += StartEvent;
         ClickOnActiveDeviceTrigger += ClickOnActiveDevice;
@@ -71,10 +69,6 @@ public class EventManager : MonoSingleton<EventManager>
         IsEventPlaying = false;
         ActiveDevice = null;
         CurrentEvent = null;
-
-
-
-        Debug.Log("End");
     }
 
     void ClickOnActiveDevice()

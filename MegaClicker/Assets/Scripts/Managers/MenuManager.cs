@@ -8,6 +8,9 @@ public class MenuManager : MonoSingleton<MenuManager>
     {
         Menus = FindObjectsOfType<Menu>();
         ChangeMenu(Main);
+
+        Main.WikiText = "dsad\nsdasd";
+        Shop.WikiText = "dsad\nsdasd";
     }
 
     public void ChangeMenu(Menu menu)
