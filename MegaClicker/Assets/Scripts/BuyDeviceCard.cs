@@ -47,6 +47,8 @@ public class BuyDeviceCard : MonoBehaviour
                 - CurrentDevice.GetSecurityLevel(CurrentDevice.Level))
                 .ToString();
 
+        Debug.Log(CurrentDevice.SecurityLevel);
+
         DeviceLevel.text = CurrentDevice.Level.ToString();
 
         GameManager.Instance.SetTexts();

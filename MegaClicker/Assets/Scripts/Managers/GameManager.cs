@@ -13,6 +13,7 @@ public class GameManager : MonoSingleton<GameManager>
     public Text PointsText;
     public Text PointsPerSecText;
 
+
     public Wiki Wiki;
 
     public AudioSource ClickSource;
@@ -43,11 +44,6 @@ public class GameManager : MonoSingleton<GameManager>
                 sum += device.PointsPerSec;
             return sum;
         }
-    }
-
-    public void OnClickWikiButton()
-    {
-        Wiki.gameObject.SetActive(!Wiki.gameObject.activeInHierarchy);
     }
 
     public Text GemsOnEndEventText;
@@ -104,6 +100,12 @@ public class GameManager : MonoSingleton<GameManager>
 
         IsNewLevelSetting = false;
     }
+
+    public void OnClickWikiButton()
+    {
+        Wiki.gameObject.SetActive(!Wiki.gameObject.activeInHierarchy);
+    }
+
 
     Vector2 dPos;
 

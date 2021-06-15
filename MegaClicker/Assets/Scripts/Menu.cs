@@ -6,14 +6,4 @@ public class Menu : MonoBehaviour
 {
     public string WikiText;
     public string WikiName;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

@@ -28,10 +28,10 @@ public class PhotoEvent : Event
 
     void StartPhotoEvent()
     {
+        Panel.SetActive(true);
+
         var random = new System.Random();
         CurrentPhoto = Photos[random.Next(0, Photos.Length)];
-
-        Panel.SetActive(true);
 
         CurrentPhoto.gameObject.SetActive(true);
 
@@ -47,7 +47,6 @@ public class PhotoEvent : Event
         CurrentPhoto?.gameObject.SetActive(false);
         CurrentPhoto = null;
         Panel.SetActive(false);
-
     }
 
     IEnumerator WaitAndEnd()
