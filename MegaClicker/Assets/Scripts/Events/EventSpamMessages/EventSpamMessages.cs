@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EventSpamMessages : Event
 {
-    public Text OutputText, CorrectAnswer, Win;
+    public Text Message, CorrectAnswerCount;
     public Button button1, button2;
     public GameObject Panel;
 
@@ -13,7 +13,7 @@ public class EventSpamMessages : Event
     private Queue<Message> queueMessages;
     private Message actualMessage;
     private int countOfRightAnswers;
-    private const int needRightAnswers = 5;
+    private const int needRightAnswers = 3;
 
 
     public void OnClikTest() => StartExampleEvent();
@@ -33,7 +33,7 @@ public class EventSpamMessages : Event
         }
         else if (countOfRightAnswers != 0 ) countOfRightAnswers--;
 
-        CorrectAnswer.text = string.Format("{0} / {1}", countOfRightAnswers, needRightAnswers);
+        CorrectAnswerCount.text = string.Format("{0} / {1}", countOfRightAnswers, needRightAnswers);
 
         if (countOfRightAnswers >= needRightAnswers)
         {
@@ -48,7 +48,7 @@ public class EventSpamMessages : Event
         }
         else EndExampleEvent();
 
-        OutputText.text = actualMessage.text;
+        Message.text = actualMessage.text;
     }
 
     private void Start()
@@ -64,18 +64,13 @@ public class EventSpamMessages : Event
         Panel.SetActive(true);
 
         actualMessage = queueMessages.Dequeue();
-        OutputText.text = actualMessage.text;
+        Message.text = actualMessage.text;
         countOfRightAnswers = 0;
     }
 
     public void EndExampleEvent()
     {
-        Win.enabled = true;
-
-        if (isWin) Win.text = "Атака успешно отбита!";
-        else Win.text = "Вас поглатила тьма!";
-
-        OutputText.enabled = false;
+        Message.enabled = false;
         button1.enabled = false;
         button2.enabled = false;
         StartCoroutine(WaitAndEnd(2));
@@ -94,10 +89,9 @@ public class EventSpamMessages : Event
         isWin = false;
         queueMessages = CreateQueue.GetQueueMessages();
         countOfRightAnswers = 0;
-        CorrectAnswer.text = "0 / 0";
+        CorrectAnswerCount.text = "0 / 0";
 
-        Win.enabled = false;
-        OutputText.enabled = true;
+        Message.enabled = true;
         button1.enabled = true;
         button2.enabled = true;
     }

@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 1519361281530250183}
   - component: {fileID: 6879535937616673896}
   - component: {fileID: 3111896813695741050}
+  - component: {fileID: 1498388838149653500}
+  - component: {fileID: 369967183893109849}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -106,6 +108,7 @@ MonoBehaviour:
   CurrentEvent: {fileID: 0}
   Events: []
   ActiveDevice: {fileID: 0}
+  EventsPanel: {fileID: 0}
 --- !u!114 &8071596985171690563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,11 +122,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  isEnding: 0
+  WikiText: 
+  WikiName: 
   Panel: {fileID: 0}
-  OutputText: {fileID: 0}
-  InputText: {fileID: 0}
   inputField: {fileID: 0}
+  Button: {fileID: 0}
 --- !u!114 &4812833573991506221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
+  WikiText: 
+  WikiName: 
   Photos: []
+  Panel: {fileID: 0}
 --- !u!114 &6201463348793952850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  Menus: []
+  Main: {fileID: 0}
+  Shop: {fileID: 0}
 --- !u!114 &1519361281530250183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,14 +176,17 @@ MonoBehaviour:
   PointsInCurrentLevelText: {fileID: 0}
   PointsText: {fileID: 0}
   PointsPerSecText: {fileID: 0}
+  Wiki: {fileID: 0}
+  ClickSource: {fileID: 0}
+  DeviceInfo: {fileID: 0}
   PointsCurrentLevel: 0
   Points: 0
   GemsOnEndEventText: {fileID: 0}
-  Level: 0
   Gems: 0
   GemsText: {fileID: 0}
   LevelText: {fileID: 0}
   maxPoints: 0
+  TouchParticle: {fileID: 0}
   IsNewLevelSetting: 0
 --- !u!114 &6879535937616673896
 MonoBehaviour:
@@ -191,11 +201,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  AccessButtonsBar: {fileID: 0}
+  WikiText: 
+  WikiName: 
   CurrentPhoto: {fileID: 0}
   Photos: []
   isEnding: 0
   AccessButtons: []
+  Panel: {fileID: 0}
 --- !u!114 &3111896813695741050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +221,125 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
+  WikiText: 
+  WikiName: 
   EventName: {fileID: 0}
-  PermissionButtons: []
   PermissionButtonsPanel: {fileID: 0}
   EventPanel: {fileID: 0}
+--- !u!82 &1498388838149653500
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316746405780892019}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9c8bf10ecccda5b4a8f565d4a1b29101, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &369967183893109849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316746405780892019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2592f88bfc494a8c09457b7ec2585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  global: 1
+  WikiText: 
+  WikiName: 
+  OutputText: {fileID: 0}
+  CorrectAnswer: {fileID: 0}
+  Win: {fileID: 0}
+  button1: {fileID: 0}
+  button2: {fileID: 0}
+  Panel: {fileID: 0}

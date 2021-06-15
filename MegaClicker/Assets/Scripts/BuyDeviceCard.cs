@@ -27,10 +27,10 @@ public class BuyDeviceCard : MonoBehaviour
 
     void Start()
     {
-        SetBuyDeviceCard();
+        SetBuyDeviceCardNewText();
     }
 
-    void SetBuyDeviceCard()
+    public void SetBuyDeviceCardNewText()
     {
         PointsOnClickText.text = CurrentDevice.PointsOnClick + "  +" + (CurrentDevice.GetPointsOnClick(CurrentDevice.Level + 1)
             - CurrentDevice.GetPointsOnClick(CurrentDevice.Level))
@@ -63,7 +63,7 @@ public class BuyDeviceCard : MonoBehaviour
         {
             GameManager.Instance.Points -= CurrentDevice.PointsPrice;
             CurrentDevice.Level++;
-            SetBuyDeviceCard();
+            SetBuyDeviceCardNewText();
         }
     }
 
@@ -73,7 +73,7 @@ public class BuyDeviceCard : MonoBehaviour
         {
             GameManager.Instance.Gems -= CurrentDevice.GemsPrice;
             CurrentDevice.Level++;
-            SetBuyDeviceCard();
+            SetBuyDeviceCardNewText();
         }
     }
 }

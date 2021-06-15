@@ -8,6 +8,7 @@ public class PhotoEvent : Event
     Photo CurrentPhoto;
     public Photo[] Photos;
     bool isEnding = false;
+    public GameObject Panel;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class PhotoEvent : Event
             p.ResetPhoto();
 
         StartEventAction += StartPhotoEvent;
+        ResetEvent();
     }
 
     void Update()
@@ -26,6 +28,8 @@ public class PhotoEvent : Event
 
     void StartPhotoEvent()
     {
+        Panel.SetActive(true);
+
         var random = new System.Random();
         CurrentPhoto = Photos[random.Next(0, Photos.Length)];
 
@@ -33,15 +37,15 @@ public class PhotoEvent : Event
 
         foreach (var e in CurrentPhoto.Elements)
             e.UnCheck();
-
     }
 
     public void ResetEvent()
     {
         isEnding = false;
-        CurrentPhoto.ResetPhoto();
-        CurrentPhoto.gameObject.SetActive(false);
+        CurrentPhoto?.ResetPhoto();
+        CurrentPhoto?.gameObject.SetActive(false);
         CurrentPhoto = null;
+        Panel.SetActive(false);
     }
 
     IEnumerator WaitAndEnd()

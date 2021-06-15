@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
-
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -12,6 +10,9 @@ public class GameManager : MonoSingleton<GameManager>
     public Text PointsInCurrentLevelText;
     public Text PointsText;
     public Text PointsPerSecText;
+
+    public Wiki Wiki;
+
     public AudioSource ClickSource;
 
     //public GameObject Virus;
@@ -95,6 +96,11 @@ public class GameManager : MonoSingleton<GameManager>
         yield return new WaitForSeconds(0.4f);
 
         IsNewLevelSetting = false;
+    }
+
+    public void OnClickWikiButton()
+    {
+        Wiki.gameObject.SetActive(!Wiki.gameObject.activeInHierarchy);
     }
 
     Vector2 dPos;

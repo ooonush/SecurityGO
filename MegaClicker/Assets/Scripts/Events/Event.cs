@@ -6,6 +6,9 @@ public class Event : MonoSingleton<Event>
 {
     public UnityAction StartEventAction;
 
+    public string WikiText;
+    public string WikiName;
+
     public bool IsActive => ActiveDevice == null;
     public Device ActiveDevice { get; private set; }
 
