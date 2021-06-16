@@ -15,19 +15,9 @@ public class EventSpamMessages : Event
     private int countOfRightAnswers;
     private const int needRightAnswers = 3;
 
-
-    public void OnClikTest() => StartExampleEvent();
-    public void ClickYes() => OnClick(true);
-    public void ClickNo() => OnClick(false);
-
-    public void OnClick(bool answer)
+    public void CheckAnswer(bool isSpam)
     {
-        CheckAnswer(answer);
-    }
-
-    public void CheckAnswer(bool playerSelection)
-    {
-        if (playerSelection == actualMessage.isSpam)
+        if (isSpam == actualMessage.isSpam)
         {
             countOfRightAnswers++;
         }
@@ -70,28 +60,27 @@ public class EventSpamMessages : Event
 
     public void EndExampleEvent()
     {
-        Message.enabled = false;
         button1.enabled = false;
         button2.enabled = false;
-        StartCoroutine(WaitAndEnd(2));
+        StartCoroutine(WaitAndEnd(1));
     }
 
     public IEnumerator WaitAndEnd(int sec)
     {
         yield return new WaitForSeconds(sec);
-        Panel.SetActive(false);
         ResetEvent();
         EndEvent(isWin);
     }
 
     public void ResetEvent()
     {
+        Panel.SetActive(false);
+
         isWin = false;
         queueMessages = CreateQueue.GetQueueMessages();
         countOfRightAnswers = 0;
         CorrectAnswerCount.text = "0 / 0";
 
-        Message.enabled = true;
         button1.enabled = true;
         button2.enabled = true;
     }
