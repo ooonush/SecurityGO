@@ -99,6 +99,10 @@ public class PermissionsEvent : Event
                 userPermissionCombination += (int)Permissions.Flashlight;
                 break;
         }
+    }
+
+    public void ConfirmAnswer()
+    {
 
         if (!isEnding)
         {
@@ -107,7 +111,8 @@ public class PermissionsEvent : Event
                 EndExampleEvent(true);
             }
 
-            if (userPermissionCombination > currentApp.permissionsCombination)
+            if (userPermissionCombination > currentApp.permissionsCombination 
+                || userPermissionCombination < currentApp.permissionsCombination)
             {
                 EndExampleEvent(false);
             }

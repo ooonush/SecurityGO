@@ -2164,6 +2164,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GivePermission
       objectReference: {fileID: 0}
+    - target: {fileID: 6819646301593298797, guid: ba5e2097a056ba84ebf78b3d2b703493, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1316313114}
+    - target: {fileID: 6819646301593298797, guid: ba5e2097a056ba84ebf78b3d2b703493, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConfirmAnswer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819646301593298797, guid: ba5e2097a056ba84ebf78b3d2b703493, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PermissionsEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819646301593298797, guid: ba5e2097a056ba84ebf78b3d2b703493, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7520401340947952496, guid: ba5e2097a056ba84ebf78b3d2b703493, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
