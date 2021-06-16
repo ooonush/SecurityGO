@@ -33,7 +33,8 @@ public class EventManager : MonoSingleton<EventManager>
             MonoSingleton<PhotoEvent>.Instance,
             MonoSingleton<EventPasswordComplexity>.Instance,
             MonoSingleton<PostPhotoEvent>.Instance,
-            MonoSingleton<PermissionsEvent>.Instance
+            MonoSingleton<PermissionsEvent>.Instance,
+            MonoSingleton<EventSpamMessages>.Instance
         };
         
         StartCoroutine(EventTriggerCoroutine());
