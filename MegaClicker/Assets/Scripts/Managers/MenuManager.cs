@@ -6,11 +6,14 @@ public class MenuManager : MonoSingleton<MenuManager>
 
     private void Start()
     {
+        Main.WikiName = "Главный экран";
+        Shop.WikiName = "Магазин";
+
+        Main.WikiText = "Это “Главный экран”. Кликая по экрану, вы зарабатываете монеты. Количество этих монет зависит от характеристик ваших устройств, которые вы можете посмотреть, кликнув по интересующему вас устройству. Там же вы можете перейти во вкладку “Улучшение устройств”, кликнув по кнопке “Улучшить”.";
+        Shop.WikiText = "Здесь вы можете улучшить необходимое устройство. Уровень безопасности устройства влияет на то сколько кристалликов вы потеряете в случае провала отбития атаки.";
+
         Menus = FindObjectsOfType<Menu>();
         ChangeMenu(Main);
-
-        Main.WikiText = "dsad\nsdasd";
-        Shop.WikiText = "dsad\nsdasd";
     }
 
     public void ChangeMenu(Menu menu)
